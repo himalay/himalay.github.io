@@ -16,20 +16,9 @@ body {
 ol, ul {
   list-style: none; }
 
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after {
-  content: '';
-  content: none; }
-
 q:before, q:after {
   content: '';
   content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
 
 body {
   width: 100%;
@@ -40,15 +29,10 @@ body {
   body:after {
     clear: both; }
 
-/*
- * Foundation Icons v 3.0
- * Made by ZURB 2013 http://zurb.com/playground/foundation-icon-fonts-3
- * MIT License
- */
 @font-face {
   font-family: "foundation-icons";
   src: url("../fonts/foundation-icons/foundation-icons.eot");
-  src: url("../fonts/foundation-icons/foundation-icons.eot?") format("embedded-opentype"), url("../fonts/foundation-icons/foundation-icons.woff") format("woff"), url("../fonts/foundation-icons/foundation-icons.ttf") format("truetype"), url("../fonts/foundation-icons/foundation-icons.svg") format("svg");
+  src: url("../fonts/foundation-icons/foundation-icons.eot?") format("embedded-opentype"), url("../fonts/foundation-icons/foundation-icons.woff") format("woff"), url("../fonts/foundation-icons/foundation-icons.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 .icon:before {
@@ -139,20 +123,6 @@ strong {
 em {
   font-style: italic; }
 
-blockquote {
-  margin: 1em 0;
-  padding: 2em 0;
-  background: #f8f8f8;
-  border: 1px solid #eeeeee;
-  border-radius: 3px;
-  font-family: "Roboto Slab", serif;
-  font-weight: lighter;
-  font-style: italic;
-  font-size: 1.3em;
-  text-align: center; }
-  blockquote p:last-child {
-    margin-bottom: 0; }
-
 ol, ul {
   margin: 0 0 1.3em 2.5em; }
   ol li, ul li {
@@ -166,29 +136,6 @@ ol {
 
 ul {
   list-style-type: disc; }
-
-code {
-  padding: .1em .4em;
-  background: #e8f2fb;
-  border: 1px solid #c9e1f6;
-  border-radius: 3px;
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: .85em; }
-
-pre {
-  margin-bottom: 1.3em;
-  padding: 1em 2.5%;
-  background: #e8f2fb;
-  border: 1px solid #c9e1f6;
-  border-radius: 3px;
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  font-size: .9em;
-  font-weight: normal;
-  line-height: 1.3em; }
-  pre code {
-    padding: 0;
-    background: none;
-    border: none; }
 
 .date,
 .time,
@@ -255,22 +202,6 @@ pre {
 .content-wrapper__inner {
   margin: 0 10%;
   padding: 50px 0; }
-
-.footer {
-  display: block;
-  padding: 2em 0 0 0;
-  border-top: 2px solid #dddddd;
-  font-size: .7em;
-  color: #b3b3b3; }
-
-.footer__copyright {
-  display: block;
-  margin-bottom: .7em; }
-  .footer__copyright a {
-    color: #a6a6a6;
-    text-decoration: underline; }
-    .footer__copyright a:hover {
-      color: #b9301c; }
 
 .avatar,
 .logo {
@@ -427,33 +358,6 @@ hr {
 .cover-navigation--social {
   margin-left: 30px; }
 
-.cover-green {
-  background-color: rgba(21, 111, 120, 0.6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(21, 111, 120, 0.6)), color-stop(100%, rgba(6, 31, 33, 0.8)));
-  background-image: -webkit-linear-gradient(-410deg, rgba(21, 111, 120, 0.6) 20%, rgba(6, 31, 33, 0.8));
-  background-image: linear-gradient(140deg,rgba(21, 111, 120, 0.6) 20%, rgba(6, 31, 33, 0.8)); }
-
-.cover-purple {
-  background-color: rgba(73, 50, 82, 0.6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(73, 50, 82, 0.6)), color-stop(100%, rgba(17, 11, 19, 0.8)));
-  background-image: -webkit-linear-gradient(-410deg, rgba(73, 50, 82, 0.6) 20%, rgba(17, 11, 19, 0.8));
-  background-image: linear-gradient(140deg,rgba(73, 50, 82, 0.6) 20%, rgba(17, 11, 19, 0.8)); }
-
-.cover-red {
-  background-color: rgba(119, 31, 18, 0.6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(119, 31, 18, 0.6)), color-stop(100%, rgba(30, 8, 5, 0.8)));
-  background-image: -webkit-linear-gradient(-410deg, rgba(119, 31, 18, 0.6) 20%, rgba(30, 8, 5, 0.8));
-  background-image: linear-gradient(140deg,rgba(119, 31, 18, 0.6) 20%, rgba(30, 8, 5, 0.8)); }
-
-.cover-slate {
-  background-color: rgba(61, 66, 96, 0.6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(61, 66, 96, 0.6)), color-stop(100%, rgba(21, 23, 34, 0.8)));
-  background-image: -webkit-linear-gradient(-410deg, rgba(61, 66, 96, 0.6) 20%, rgba(21, 23, 34, 0.8));
-  background-image: linear-gradient(140deg,rgba(61, 66, 96, 0.6) 20%, rgba(21, 23, 34, 0.8)); }
-
-.cover-disabled {
-  background: none; }
-
 .btn, .navigation__item a {
   padding: 10px 20px;
   border: 1px solid #e25440;
@@ -467,29 +371,6 @@ hr {
   .btn:hover, .navigation__item a:hover {
     color: #b9301c;
     border-color: #b9301c; }
-
-.btn-secondary {
-  border-color: #5ba4e5;
-  color: #5ba4e5; }
-  .btn-secondary:hover {
-    color: #217fd2;
-    border-color: #217fd2; }
-
-.btn-tertiary {
-  border-color: #999999;
-  color: #999999; }
-  .btn-tertiary:hover {
-    color: #737373;
-    border-color: #737373; }
-
-.btn-large {
-  padding: 10px 24px;
-  font-size: 1.1em; }
-
-.btn-small {
-  padding: 8px 12px;
-  font-size: .7em; }
-
 .btn-mobile-menu {
   display: none;
   position: fixed;
@@ -556,44 +437,6 @@ i {
   font-size: 22px;
   display: block;
   position: relative; }
-
-.post-list {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  text-align: left; }
-  .post-list li {
-    margin: 0 0 2.2em 0; }
-    .post-list li:last-child hr {
-      display: none; }
-
-.post-list__post-title {
-  margin-top: 0;
-  margin-bottom: .2em;
-  font-size: 1.5em;
-  line-height: 1.3em; }
-  .post-list__post-title a {
-    color: #333333; }
-    .post-list__post-title a:hover {
-      color: #b9301c; }
-
-.post-list__meta {
-  display: block;
-  margin: .7em 0 0 0;
-  font-size: .9em;
-  color: #c7c7c7; }
-
-.post-list__meta--date {
-  margin-right: .5em;
-  color: #c7c7c7; }
-
-.post-list__meta--tags {
-  margin-left: .5em; }
-
-.post-list__divider {
-  width: 30%;
-  margin: 2.2em 0 2.1em 0;
-  border-top: 1px solid #dddddd; }
 
 *:focus {
   outline: none; }
