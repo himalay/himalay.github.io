@@ -259,12 +259,12 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {
-  font-size: 1rem;
-  font-weight: 300;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 .tagline {
   font-size: 0.8rem;
-  font-weight: 150;
+  font-weight: 100;
 }
 
 /*
