@@ -1,0 +1,26 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
+# Setup
+title:            himalay
+tagline:          "The 'note to self' blog of Himalay."
+socialmedia:      "Twitter: <a href='https://twitter.com/HimalaySunuwar' target='_blank'>@HimalaySunuwar</a><br/> Github: <a href='https://github.com/himalay' target='_blank'>@himalay</a>"
+url:              http://himalay.com.np
+baseurl:          /
+
+author:
+  name:           'Himalay'
+  url:            http://himalay.com.np/about/
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/poole/hyde
