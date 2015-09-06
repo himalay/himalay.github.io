@@ -1,1 +1,1 @@
-# [himalay.com.np](http://himalay.com.np)
+# [himalay.com.np](https://himalay.com.np)

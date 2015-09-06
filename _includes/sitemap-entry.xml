@@ -1,0 +1,9 @@
+--- ---
+<url>
+  <loc>https://himalay.com.np{{include.entry.url}}</loc>
+  {% if include.entry.changefreq %}
+  <changefreq>{{include.entry.changefreq}}</changefreq>
+  {% endif %} {% if include.entry.priority %}
+  <priority>{{include.entry.changefreq}}</priority>
+  {% endif %}
+</url>

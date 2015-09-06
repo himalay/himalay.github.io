@@ -9,14 +9,14 @@ relative_permalinks: true
 # Setup
 title:            himalay
 tagline:          "The 'note to self' blog of Himalay."
-bio:      "I use Linux, listen to Metal and eat Rice. No I don't smoke, drink, or do drugs."
+bio:      "I use Linux, listen to Metal and eat Rice — <em>not necessarily at the same time</em>. No I don't smoke, drink, or do drugs."
 socialmedia:      "Github: <a href='https://github.com/himalay' target='_blank'>@himalay</a><br/> Twitter: <a href='https://twitter.com/HimalaySunuwar' target='_blank'>@HimalaySunuwar</a>"
-url:              http://himalay.com.np
+url:              https://himalay.com.np
 baseurl:          /
 
 author:
   name:           'Himalay'
-  url:            http://himalay.com.np/about/
+  url:            https://himalay.com.np/about/
 
 paginate:         5
 
