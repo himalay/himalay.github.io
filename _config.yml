@@ -9,7 +9,7 @@ collections:
     title: Uploads
     output: true
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: pretty
 tagline: The 'note to self' blog of Himalay.
 bio: I use Linux, listen to Metal and eat Rice — <em>not necessarily at the same time</em>.
