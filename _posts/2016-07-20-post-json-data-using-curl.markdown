@@ -1,5 +1,5 @@
 ---
-title: Make a POST request with JSON data using cURL
+title: Post JSON data using cURL
 date: 2016-07-20 01:44:00 Z
 tags:
 - cURL
