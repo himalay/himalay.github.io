@@ -21,7 +21,7 @@ contacts:
   url: https://twitter.com/HimalaySunuwar
 - service: Github
   title: "@himalay"
-  url: https://twitter.com/himalay
+  url: https://github.com/himalay
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
