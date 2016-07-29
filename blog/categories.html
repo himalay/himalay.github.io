@@ -1,0 +1,48 @@
+---
+layout: nofooter
+---
+{% comment%}
+Here we generate all the categories.
+{% endcomment%}
+
+{% assign rawcategories = "" %}
+{% for post in site.posts %}
+{% assign tcategories = post.category | join:'|' | append:'|' %}
+{% assign rawcategories = rawcategories | append:tcategories %}
+{% endfor %}
+
+{% assign rawcategories = rawcategories | split:'|' | sort %}
+
+{% assign categories = "" %}
+
+{% for cat in rawcategories %}
+{% if cat != "" %}
+
+{% if categories == "" %}
+{% assign categories = cat | split:'|' %}
+{% endif %}
+
+{% unless categories contains cat %}
+{% assign categories = categories | join:'|' | append:'|' | append:cat | split:'|' %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+
+{% for category in categories %}
+<div class="obj-pros"><span id="{{ category | slugify }}" class="key">{{ category | downcase }}</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}{% if post.category contains category %}<span class="punctuation">{</span>
+<div class="obj-pros">
+  <div>
+    <span class="key">title</span><span class="punctuation">: </span>
+    <span class="value"><a href="{{ post.url | prepend: site.baseurl }}"><h2>{{ post.title }}</h2></a></span><span class="punctuation">,</span>
+  </div>
+  <div>
+    <span class="key">date</span><span class="punctuation">: </span>
+    <span class="value">{{ post.date | date: "%b %-d, %Y" }}</span><span class="punctuation">,</span>
+  </div>
+  <div>
+    <span class="key">tags</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for tag in post.tags %}<span class="value"><a href="/tags/#{{ tag | prepend: site.baseurl }}">{{tag}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+  </div>
+  </div>
+<span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+</div>
+{% endfor %}

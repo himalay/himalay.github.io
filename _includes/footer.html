@@ -1,0 +1,20 @@
+<footer>
+  <div class="obj-pros">
+    <span class="key">contact</span><span class="punctuation">: </span><span class="punctuation">{</span>
+    <div class="obj-pros">
+      {% for contact in site.contacts %}
+      <div>
+        <span class="key">{{ contact.service | downcase }}</span><span class="punctuation">: </span>
+        <span class="value"><a href="{{ contact.url }}">{{ contact.title }}</a></span>{% if forloop.index
+        < forloop.length %}<span class="punctuation">,</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <span class="punctuation">}</span><span class="punctuation">,</span>
+  </div>
+  <div class="obj-pros">
+    <span class="key">rss</span><span class="punctuation">: </span>
+    <span class="value"><a href="/feed.xml">/feed.xml</a></span>
+  </div>
+  <span class="punctuation">}</span>
+</footer>

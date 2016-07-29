@@ -1,7 +1,8 @@
 ---
 layout: default
+title: Blog
 ---
-<div class="obj-pros"><span class="key">recent_posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts limit:3 %}<span class="punctuation">{</span>
+<div class="obj-pros"><span class="key">posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}<span class="punctuation">{</span>
 <div class="obj-pros">
   <div>
     <span class="key">title</span><span class="punctuation">: </span>
@@ -16,7 +17,7 @@ layout: default
   </div>
   <div class="obj-prop">
     <span class="key">summary</span><span class="punctuation">: </span>
-    <span class="value">{{ post.excerpt | strip_newlines }}</span>
+    <span class="value">{{ post.excerpt | strip_newlines }}</span><span class="punctuation">,</span>
   </div>
   </div>
 <span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>

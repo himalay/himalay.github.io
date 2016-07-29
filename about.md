@@ -1,6 +1,7 @@
 ---
-title: About
 layout: page
+title: About
+permalink: /about/
+nav: true
 ---
-
-¯\_(ツ)_/¯
+ ¯\_(ツ)_/¯

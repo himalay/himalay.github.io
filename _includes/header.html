@@ -1,0 +1,46 @@
+{% comment%}
+Here we generate all the categories.
+{% endcomment%}
+
+{% assign rawcategories = "" %}
+{% for post in site.posts %}
+{% assign tcategories = post.category | join:'|' | append:'|' %}
+{% assign rawcategories = rawcategories | append:tcategories %}
+{% endfor %}
+
+{% assign rawcategories = rawcategories | split:'|' | sort %}
+
+{% assign categories = "" %}
+
+{% for cat in rawcategories %}
+{% if cat != "" %}
+
+{% if categories == "" %}
+{% assign categories = cat | split:'|' %}
+{% endif %}
+
+{% unless categories contains cat %}
+{% assign categories = categories | join:'|' | append:'|' | append:cat | split:'|' %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+
+<header>
+<span class="punctuation">{</span>
+  <div class="obj-pros">
+    <span class="key">name</span><span class="punctuation">: </span>
+    <span class="value"><a href="/"><h1>{{ site.title | strip_newlines }}</h1></a></span><span class="punctuation">,</span>
+  </div>
+  <div class="obj-pros">
+    <span class="key">bio</span><span class="punctuation">: </span>
+    <span class="value">{{ site.description | strip_newlines }}</span><span class="punctuation">,</span>
+  </div>
+  <nav>
+    <div class="obj-pros">
+      <span class="key">pages</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for my_page in site.pages %}{% if my_page.title %}{% if forloop.index > 1 %}<span class="token punctuation">, </span>{% endif %}<span class="value"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+    </div>
+    <div class="obj-pros">
+      <span class="key">categories</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for category in categories %}<span class="value"><a href="/{{ category }}">{{category}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+    </div>
+  </nav>
+</header>

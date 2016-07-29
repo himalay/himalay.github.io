@@ -1,27 +1,22 @@
----
-title: himalay
-timezone: UTC
-collections:
-  posts:
-    title: Posts
-    output: true
-  uploads:
-    title: Uploads
-    output: true
+# Site settings
+title: Himalay Sunuwar
+email: your-email@domain.com
+description: I am a programmer from Himalayas. I speak Java, Python and JavaScript.
+baseurl: ''
+url: https://himalay.com.np
+contacts:
+  - service: Email
+    title: contact@himalay.com.np
+    url: mailto:contact@himalay.com.np
+  - service: Twitter
+    title: '@HimalaySunuwar'
+    url: https://twitter.com/HimalaySunuwar
+  - service: Github
+    title: '@himalay'
+    url: https://twitter.com/himalay
+
+
+# Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-tagline: The 'note to self' blog of Himalay.
-bio: I use Linux, listen to Metal and eat Rice — <em>not necessarily at the same time</em>.
-  No I don't smoke, drink, or do drugs.
-socialmedia: 'Github: <a href=''https://github.com/himalay'' target=''_blank''>@himalay</a><br/>
-  Twitter: <a href=''https://twitter.com/HimalaySunuwar'' target=''_blank''>@HimalaySunuwar</a>'
-url: https://himalay.com.np
-baseurl: "/"
-author:
-  name: Himalay
-  url: https://himalay.com.np/about/
-paginate: 5
-version: 2.1.0
-github:
-  repo: https://github.com/poole/hyde
