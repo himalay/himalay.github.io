@@ -7,7 +7,7 @@ layout: default
 <div class="obj-pros">
   <div>
     <span class="key">title</span><span class="punctuation">: </span>
-    <span class="value"><a href="{{ post.url | prepend: site.baseurl }}"><h2>{{ post.title }}</h2></a></span><span class="punctuation">,</span>
+    <h2 class="value"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2><span class="punctuation">,</span>
   </div>
   <div>
     <span class="key">date</span><span class="punctuation">: </span>
@@ -18,7 +18,7 @@ layout: default
   </div>
   <div class="obj-prop">
     <span class="key">summary</span><span class="punctuation">: </span>
-    <span class="value">{{ post.excerpt | strip_newlines }}</span><span class="punctuation">,</span>
+    <p class="value">{{ post.excerpt | strip_newlines | remove: '<p>' | remove: '</p>' }}</p><span class="punctuation">,</span>
   </div>
   </div>
 <span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
