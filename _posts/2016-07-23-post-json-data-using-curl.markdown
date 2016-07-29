@@ -1,10 +1,13 @@
 ---
+title: Post JSON data using cURL
+date: 2016-07-23 02:53:21 Z
+categories:
+- cli
+tags:
+- cURL
 layout: post
-title:  Post JSON data using cURL
-date:   2016-07-23 08:38:21 +0545
-category: cli
-tags: [cURL]
 ---
+
 In this post I would like to show how to make post request with `JSON` data using `curl` cli tool.
 
 ### Inline JSON
