@@ -4,7 +4,7 @@ Here we generate all the categories.
 
 {% assign rawcategories = "" %}
 {% for post in site.posts %}
-{% assign tcategories = post.category | join:'|' | append:'|' %}
+{% assign tcategories = post.categories | join:'|' | append:'|' %}
 {% assign rawcategories = rawcategories | append:tcategories %}
 {% endfor %}
 

@@ -8,7 +8,7 @@ Here we generate all the categories.
 
 {% assign rawcategories = "" %}
 {% for post in site.posts %}
-{% assign tcategories = post.category | join:'|' | append:'|' %}
+{% assign tcategories = post.categories | join:'|' | append:'|' %}
 {% assign rawcategories = rawcategories | append:tcategories %}
 {% endfor %}
 
@@ -30,7 +30,7 @@ Here we generate all the categories.
 {% endfor %}
 
 {% for category in categories %}
-<div class="obj-pros"><span id="{{ category | slugify }}" class="key">{{ category | downcase }}</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}{% if post.category contains category %}<span class="punctuation">{</span>
+<div class="obj-pros"><span id="{{ category | slugify }}" class="key">{{ category | downcase }}</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}{% if post.categories contains category %}<span class="punctuation">{</span>
 <div class="obj-pros">
   <div>
     <span class="key">title</span><span class="punctuation">: </span>

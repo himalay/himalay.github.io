@@ -1,7 +1,7 @@
 ---
 title: Post JSON data using cURL
 date: 2016-07-23 02:53:21 Z
-category: cli
+categories: cli
 tags: [cURL]
 layout: post
 ---
