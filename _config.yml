@@ -1,22 +1,27 @@
-# Site settings
+---
 title: Himalay Sunuwar
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
 email: your-email@domain.com
 description: I am a programmer from Himalayas. I speak Java, Python and JavaScript.
 baseurl: ''
 url: https://himalay.com.np
 contacts:
-  - service: Email
-    title: contact@himalay.com.np
-    url: mailto:contact@himalay.com.np
-  - service: Twitter
-    title: '@HimalaySunuwar'
-    url: https://twitter.com/HimalaySunuwar
-  - service: Github
-    title: '@himalay'
-    url: https://twitter.com/himalay
-
-
-# Build settings
+- service: Email
+  title: contact@himalay.com.np
+  url: mailto:contact@himalay.com.np
+- service: Twitter
+  title: "@HimalaySunuwar"
+  url: https://twitter.com/HimalaySunuwar
+- service: Github
+  title: "@himalay"
+  url: https://twitter.com/himalay
 markdown: kramdown
 highlighter: rouge
 permalink: pretty

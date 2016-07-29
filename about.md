@@ -1,7 +1,8 @@
 ---
-layout: page
 title: About
-permalink: /about/
+permalink: "/about/"
+layout: page
 nav: true
 ---
+
  ¯\_(ツ)_/¯
