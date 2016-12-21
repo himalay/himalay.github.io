@@ -25,3 +25,4 @@ contacts:
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
+production: true
