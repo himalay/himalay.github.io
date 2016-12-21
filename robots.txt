@@ -1,7 +1,8 @@
 ---
-layout: null
 permalink: robots.txt
+layout: 
 ---
+
 # filter pages and documents for the noindex key
 {% assign noindexPages = site.pages | where: 'sitemap', false %}
 {% assign noindexDocuments = site.documents | where: 'sitemap', false %}
