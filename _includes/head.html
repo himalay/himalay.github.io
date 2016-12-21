@@ -10,6 +10,10 @@
 {% else %}
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 {% endif %}
+
+{% if page.url == "/404.html" %}
+  <meta http-equiv="refresh" content="5; url=/blog">
+{% endif %}
   <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
