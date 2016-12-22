@@ -200,10 +200,23 @@ a:hover {
   border-bottom: 3px solid $link-color;
 }
 
+.hidden {
+  display: none;
+}
+
 .search-container {
+    position: fixed;
+    background: rgba(0,0,0,0.2);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 2em;
+    overflow: auto;
+  
     .search-input {
-      width: 80%;
-      min-width: 200px;
+      width: calc(100% - 80px);
+      max-width: 512px;
       background: transparent;
       display: inline-block;
       border: 0;
