@@ -213,7 +213,31 @@ a:hover {
     bottom: 0;
     padding: 2em;
     overflow: auto;
-  
+
+    .search-close {
+      position: absolute;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      border-radius: 50%;
+      height: 1.5em;
+      width: 1.5em;
+      color: $red-color;
+      font-size: 1.5em;
+      border: 2px solid;
+      top: 0.5em;
+      right: 0.5em;
+      outline: none;
+
+      &:hover {
+          color: darken($red-color, 10%);
+      }
+
+      &:active {
+          color: $red-color;
+      }
+    }
+
     .search-input {
       width: calc(100% - 80px);
       max-width: 512px;
