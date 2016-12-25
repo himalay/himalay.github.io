@@ -213,6 +213,7 @@ a:hover {
     bottom: 0;
     padding: 2em;
     overflow: auto;
+    z-index: 1000;
 
     .search-close {
       position: absolute;
