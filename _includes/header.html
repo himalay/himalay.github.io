@@ -43,4 +43,17 @@ Here we generate all the categories.
       <span class="key">categories</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for category in categories %}<span class="value"><a href="/{{ category }}">{{category}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
     </div>
   </nav>
+
+  <div class="search-container hidden">
+    <button id="search-close" class="search-close">×</button>
+    <span class="punctuation">{</span>
+    <div class="obj-pros">
+      <span class="key">search</span><span class="punctuation">: </span>
+      <input id="search-input" type="search" class="value search-input" placeholder="Type here" autocomplete="off" autofocus/><span class="punctuation">,</span>
+    </div>
+    <div class="obj-pros">
+      <span class="key">results</span><span class="punctuation">: </span><span class="punctuation">[</span><div id="search-results" class="values"></div><span class="punctuation">]</span>
+    </div>
+    <span class="punctuation">}</span>
+   </div>
 </header>
