@@ -6,6 +6,7 @@ categories:
 tags:
 - cURL
 layout: post
+commentIssueId: 1
 ---
 
 In this post I would like to show how to make post request with `JSON` data using `curl` cli tool.
