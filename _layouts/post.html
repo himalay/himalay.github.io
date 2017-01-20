@@ -3,7 +3,7 @@
 
   {% include head.html %}
 
-  <body>
+  <body onload="scrollToArticle()">
     {% include header.html %}
 
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -18,7 +18,15 @@
           {% for tag in page.tags %}<a href="/tags/#{{ tag }}">{{tag}}</a>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}
         </p>
       </header>
-
+      {% if page.coverImage %}
+      <figure>
+        <img id="coverImage" class="cover-image" onload="window.onresize()" src="{{ page.coverImage  }}" />
+        <div id="coverImagePlaceholder"></div>
+        {% if page.coverImageCaption %}
+        <figcaption class="image-caption">{{ page.coverImageCaption }}.</figcaption>
+        {% endif %}
+      </figure>
+      {% endif %}
       <div class="post-content" itemprop="articleBody">
         {{ content }}
       </div>

@@ -267,3 +267,18 @@ a:hover {
       color: #000;
     }
 }
+
+.cover-image {
+  position: absolute;
+    width: calc(100% - 4em);
+    left: 2em;
+  @include media-query($on-palm) {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.image-caption {
+  text-align: center;
+  margin: 10px auto 0;
+}
