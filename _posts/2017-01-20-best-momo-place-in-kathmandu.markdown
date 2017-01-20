@@ -4,7 +4,8 @@ date: 2017-01-20 19:30:21 Z
 categories:
 - food
 tags:
-- momo, kathmandu
+- momo
+- kathmandu
 layout: post
 commentIssueId: 2
 coverImage: /assets/posts/momocha.jpg
