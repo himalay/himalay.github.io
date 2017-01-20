@@ -1,5 +1,5 @@
 ---
-title: Best Mo:Mo places in Kathmandu
+title: Best Mo:Mo place in Kathmandu
 date: 2017-01-20 19:30:21 Z
 categories:
 - food
