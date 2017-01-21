@@ -2,23 +2,5 @@
 layout: default
 ---
 
-<div class="obj-pros"><span class="key">recent_posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts limit:3 %}<span class="punctuation">{</span>
-<div class="obj-pros">
-  <div>
-    <span class="key">title</span><span class="punctuation">: </span>
-    <h2 class="value"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2><span class="punctuation">,</span>
-  </div>
-  <div>
-    <span class="key">date</span><span class="punctuation">: </span>
-    <span class="value">{{ post.date | date: "%b %-d, %Y" }}</span><span class="punctuation">,</span>
-  </div>
-  <div>
-    <span class="key">tags</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for tag in post.tags %}<span class="value"><a href="/tags/#{{ tag }}">{{tag}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
-  </div>
-  <div class="obj-prop">
-    <span class="key">summary</span><span class="punctuation">: </span>
-    <p class="value">{{ post.excerpt | strip_newlines | remove: '<p>' | remove: '</p>' }}</p>
-  </div>
-  </div>
-<span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+<div class="obj-pros"><span class="key">recent_posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts limit:3 %}{% include post-obj.html post=post %}{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
 </div>

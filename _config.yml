@@ -1,6 +1,7 @@
 ---
 title: Himalay Sunuwar
 timezone: UTC
+
 collections:
   posts:
     title: Posts
@@ -8,10 +9,12 @@ collections:
   uploads:
     title: Uploads
     output: true
+
 email: your-email@domain.com
 description: I am a programmer from Himalayas. I speak Java, Python and JavaScript.
 baseurl: ''
 url: https://himalay.com.np
+
 contacts:
 - service: Email
   title: contact@himalay.com.np
@@ -22,6 +25,9 @@ contacts:
 - service: Github
   title: "@himalay"
   url: https://github.com/himalay
+
+include: ["_pages"]
+
 markdown: kramdown
 highlighter: rouge
 permalink: pretty

@@ -1,8 +1,10 @@
 ---
-layout: nofooter
+title: Blog
+permalink: "/blog/"
+layout: default
 ---
 
-<div class="obj-pros"><span class="key">cli_posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts | where:"categories", "cli"%}<span class="punctuation">{</span>
+<div class="obj-pros"><span class="key">posts</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}<span class="punctuation">{</span>
 <div class="obj-pros">
   <div>
     <span class="key">title</span><span class="punctuation">: </span>

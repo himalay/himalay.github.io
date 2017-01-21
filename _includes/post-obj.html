@@ -1,0 +1,19 @@
+<span class="punctuation">{</span>
+<div class="obj-pros">
+  <div>
+    <span class="key">title</span><span class="punctuation">: </span>
+    <h2 class="value"><a href="{{ include.post.url | prepend: site.baseurl }}">{{ include.post.title }}</a></h2><span class="punctuation">,</span>
+  </div>
+  <div>
+    <span class="key">date</span><span class="punctuation">: </span>
+    <span class="value">{{ include.post.date | date: "%b %-d, %Y" }}</span><span class="punctuation">,</span>
+  </div>
+  <div>
+    <span class="key">tags</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for tag in include.post.tags %}<span class="value"><a href="/tags/#{{ tag }}">{{tag}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+  </div>
+  <div class="obj-prop">
+    <span class="key">summary</span><span class="punctuation">: </span>
+    <p class="value">{{ include.post.excerpt | strip_newlines | remove: '<p>' | remove: '</p>' }}</p>
+  </div>
+  </div>
+<span class="punctuation">}</span>

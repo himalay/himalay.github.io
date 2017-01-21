@@ -21,9 +21,9 @@
       {% if page.coverImage %}
       <figure>
         <img id="coverImage" class="cover-image" onload="window.onresize()" src="{{ page.coverImage  }}" />
-        <div id="coverImagePlaceholder"></div>
+        <div id="postFigure"></div>
         {% if page.coverImageCaption %}
-        <figcaption class="image-caption">{{ page.coverImageCaption }}.</figcaption>
+        <figcaption class="image-caption">{{ page.coverImageCaption }}</figcaption>
         {% endif %}
       </figure>
       {% endif %}
@@ -31,7 +31,45 @@
         {{ content }}
       </div>
     </article>
+
+    <div class="comment-wrapper">
+    /*
+      <h3><span id="count">0</span> Comments</h3>
+      <p>
+        <small>Want to leave a comment? Visit <a href="https://github.com/himalay/himalay.github.io/issues/{{ page.commentIssueId }}" target="_blank"> this post's issue page on GitHub</a>.
+        </small>
+      </p>
+      <div id="comments" class="comments">
+        <div class="hidden loader"></div>
+      </div>
+    */
+    </div>
 <span class="punctuation">}</span>
   </body>
-
+  <script>
+  var commentsEl = document.querySelector('#comments')
+  var token = '260fcfa2a2c6e3ecbc087ad3562ffdf086f7f01f'
+  atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments?access_token=' + token)
+  .success(function (comments, xhr) {
+  document.querySelector('#count').textContent = comments.length
+  document.querySelector('.loader').classList.toggle('loader')
+  comments.map(function (c) {
+    atomic.setContentType('text/plain')
+    atomic.post('https://api.github.com/markdown/raw?access_token=' + token, c.body)
+    .success(function (htmlComment, xhr) {
+      var createdDate = new Date(c.created_at).toString().match(/(\w+\s\d+\s\d+)\s(\d+:\d+)/)
+      commentsEl.appendChild(Object.assign(document.createElement('div'), {
+        className: 'comment',
+        innerHTML: htmlComment + '<a class="login" href="https://github.com/' + c.user.login + '" target="_blank">@' + c.user.login + '</a> <small>' + createdDate[1] + ' at ' + createdDate[2] + '</small>'
+      }))
+    })
+    .error(function (data, xhr) {
+      console.error(data)
+    })
+  })
+  })
+  .error(function (data, xhr) {
+  console.error(data)
+  })
+  </script>
 </html>

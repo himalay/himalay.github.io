@@ -230,8 +230,12 @@ a:hover {
       font-size: 1.5em;
       border: 2px solid;
       top: 0.5em;
-      right: 0.5em;
       outline: none;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      cursor: pointer;
 
       &:hover {
           color: darken($red-color, 10%);
@@ -281,4 +285,45 @@ a:hover {
 .image-caption {
   text-align: center;
   margin: 10px auto 0;
+}
+
+.comment-wrapper {
+  color: #75715e;
+  h3, p, pre {
+    margin: 0;
+    margin-left: 20px;
+  }
+  .comments {
+    p, code {
+      font-size: small;
+    }
+    .login {
+      margin: 0;
+      margin-left: 20px;
+      font-weight: 800;
+    }
+    .comment {
+      margin: 20px 0px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.loader {
+  display: block;
+  margin: 20px;
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #7e83cb;
+  width: 32px;
+  height: 32px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

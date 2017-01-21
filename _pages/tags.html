@@ -1,39 +1,30 @@
 ---
 layout: nofooter
+permalink: "/tags/"
 ---
-
-{% comment%}
-Here we generate all the tags.
-{% endcomment%}
-
 {% assign rawtags = "" %}
 {% for post in site.posts %}
-{% assign ttags = post.tags | join:'|' | append:'|' %}
-{% assign rawtags = rawtags | append:ttags %}
+  {% assign ttags = post.tags | join:'|' | append:'|' %}
+  {% assign rawtags = rawtags | append:ttags %}
 {% endfor %}
-
 {% assign rawtags = rawtags | split:'|' | sort %}
-
 {% assign tags = "" %}
-
 {% for tag in rawtags %}
-{% if tag != "" %}
-
-{% if tags == "" %}
-{% assign tags = tag | split:'|' %}
-{% endif %}
-
-{% unless tags contains tag %}
-{% assign tags = tags | join:'|' | append:'|' | append:tag | split:'|' %}
-{% endunless %}
-{% endif %}
+  {% if tag != "" %}
+    {% if tags == "" %}
+      {% assign tags = tag | split:'|' %}
+    {% endif %}
+    {% unless tags contains tag %}
+      {% assign tags = tags | join:'|' | append:'|' | append:tag | split:'|' %}
+    {% endunless %}
+  {% endif %}
 {% endfor %}
 
 <div class="obj-pros">
   <span class="key">tags</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for tag in tags %}{% if forloop.index > 1 %}<span class="token punctuation">, </span>{% endif %}<span class="value"><a href="#{{ tag | slugify }}">{{ tag }}</a></span>{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
 </div>
 {% for tag in tags %}
-<div class="obj-pros"><span id="{{ tag | slugify }}" class="key">{{ tag | downcase }}</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.posts %}{% if post.tags contains tag %}<span class="punctuation">{</span>
+<div class="obj-pros"><span id="{{ tag | slugify }}" class="key">{{ tag | downcase }}</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for post in site.tags.[tag] %}<span class="punctuation">{</span>
 <div class="obj-pros">
   <div>
     <span class="key">title</span><span class="punctuation">: </span>
@@ -45,9 +36,9 @@ Here we generate all the tags.
   </div>
   <div>
     <span class="key">category</span><span class="punctuation">: </span>
-    <span class="value"><a href="/{{ post.categories }}">{{ post.categories }}</a></span><span class="punctuation">,</span>
+    <span class="value"><a href="/{{ post.categories }}">{{ post.categories }}</a></span>
   </div>
   </div>
-<span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
+<span class="punctuation">}</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}{% endfor %}<span class="punctuation">]</span>{% if forloop.index < forloop.length %}<span class="token punctuation">,</span>{% endif %}
 </div>
 {% endfor %}

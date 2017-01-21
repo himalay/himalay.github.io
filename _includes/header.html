@@ -37,7 +37,7 @@ Here we generate all the categories.
   </div>
   <nav>
     <div class="obj-pros">
-      <span class="key">pages</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for my_page in site.pages %}{% if my_page.title %}{% if my_page.title != '404' %}{% if forloop.index > 2 %}<span class="token punctuation">, </span>{% endif %}<span class="value"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></span>{% endif %}{% endif %}{% endfor %}<span class="punctuation">, </span><span class="value"><a id="search-btn" href="javascript:void(0)">Search</a></span><span class="punctuation">]</span><span class="punctuation">,</span>
+      <span class="key">pages</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for my_page in site.pages %}{% unless my_page.exclude %}{% if my_page.title %}{% if forloop.index > 2 %}<span class="token punctuation">, </span>{% endif %}<span class="value"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></span>{% endif %}{% endunless %}{% endfor %}<span class="punctuation">, </span><span class="value"><a id="search-btn" href="javascript:void(0)">Search</a></span><span class="punctuation">]</span><span class="punctuation">,</span>
     </div>
     <div class="obj-pros">
       <span class="key">categories</span><span class="punctuation">: </span><span class="punctuation">[</span>{% for category in categories %}<span class="value"><a href="/{{ category }}">{{category}}</a></span>{% if forloop.index < forloop.length %}<span class="punctuation">, </span>{% endif %}{% endfor %}<span class="punctuation">]</span><span class="punctuation">,</span>
