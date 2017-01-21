@@ -48,13 +48,12 @@
   </body>
   <script>
   var commentsEl = document.querySelector('#comments')
-  var token = 'b9000031b75e496fe01f6e022943f39013bea514'
-  atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments?access_token=' + token)
+  atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments')
   .success(function (comments, xhr) {
   document.querySelector('#count').textContent = comments.length
   comments.map(function (c) {
     atomic.setContentType('text/plain')
-    atomic.post('https://api.github.com/markdown/raw?access_token=' + token, c.body)
+    atomic.post('https://api.github.com/markdown/raw', c.body)
     .success(function (htmlComment, xhr) {
       var createdDate = new Date(c.created_at).toString().match(/(\w+\s\d+\s\d+)\s(\d+:\d+)/)
       commentsEl.appendChild(Object.assign(document.createElement('div'), {
