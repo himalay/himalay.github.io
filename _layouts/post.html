@@ -48,11 +48,10 @@
   </body>
   <script>
   var commentsEl = document.querySelector('#comments')
-  var token = '260fcfa2a2c6e3ecbc087ad3562ffdf086f7f01f'
+  var token = '50439d0b791cae43a189b04997bae4f1364fd024'
   atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments?access_token=' + token)
   .success(function (comments, xhr) {
   document.querySelector('#count').textContent = comments.length
-  document.querySelector('.loader').classList.toggle('loader')
   comments.map(function (c) {
     atomic.setContentType('text/plain')
     atomic.post('https://api.github.com/markdown/raw?access_token=' + token, c.body)
@@ -63,13 +62,12 @@
         innerHTML: htmlComment + '<a class="login" href="https://github.com/' + c.user.login + '" target="_blank">@' + c.user.login + '</a> <small>' + createdDate[1] + ' at ' + createdDate[2] + '</small>'
       }))
     })
-    .error(function (data, xhr) {
-      console.error(data)
-    })
+    .error(console.error)
   })
   })
-  .error(function (data, xhr) {
-  console.error(data)
+  .error(console.error)
+  .always(function () {
+    document.querySelector('.loader').classList.toggle('loader')
   })
   </script>
 </html>
