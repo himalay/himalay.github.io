@@ -48,7 +48,7 @@
   </body>
   <script>
   var commentsEl = document.querySelector('#comments')
-  var token = '50439d0b791cae43a189b04997bae4f1364fd024'
+  var token = 'b9000031b75e496fe01f6e022943f39013bea514'
   atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments?access_token=' + token)
   .success(function (comments, xhr) {
   document.querySelector('#count').textContent = comments.length
