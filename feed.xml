@@ -7,7 +7,12 @@ layout:
   <channel>
     <title>{{ site.title | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <link>{{ site.url }}/</link>
+    <image>
+      <title>{{ site.title | xml_escape }}</title>
+      <url>{{ site.url }}/assets/images/himalay.png</url>
+      <link>{{ site.url }}/</link>
+    </image>
     <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
@@ -15,7 +20,16 @@ layout:
     {% for post in site.posts limit:10 %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
-        <description>{% if post.coverImage %}<img src="{{ post.coverImage | prepend: site.url }}" title="{{ post.title | xml_escape }}" alt="{{ post.coverImageCaption }}" />{% endif %}{{ post.content | xml_escape }}</description>
+        <description>
+          {% if post.coverImage %}
+          <image>
+            <title>{{ post.title | xml_escape }}</title>
+            <url>{{ post.coverImage | prepend: site.url }}</url>
+            <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
+          </image>
+          {% endif %}
+          {{ post.content | xml_escape }}
+        </description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
