@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/himalay
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://himalay.com.np
+  * I am himalay (https://keybase.io/himalay) on keybase.
+  * I have a public key ASB5CXkKUJnXrqirOEWiYyTMTtYwrdS3sg4EF3ZTwlc1aAo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01207909790a5099d7aea8ab3845a26324cc4ed630add4b7b20e04177653c25735680a",
+            "host": "keybase.io",
+            "kid": "01207909790a5099d7aea8ab3845a26324cc4ed630add4b7b20e04177653c25735680a",
+            "uid": "17d7afe382951e3093f38d52804f6519",
+            "username": "himalay"
+        },
+        "service": {
+            "hostname": "himalay.com.np",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.22"
+    },
+    "ctime": 1494925949,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1494925925,
+        "hash": "6d52f11a8720678c18a15d0a078a16e65cd621439bb64dfb7b7b15104273c96b27c37be2f667da2b5a8d604e8b439dd0d839ffffb783c0de6528e991c4a384b3",
+        "seqno": 1086984
+    },
+    "prev": "2ad67258bd6ae883772954d2c7ecfa9a4f8b0f91658ee552c55e36c5a2d43646",
+    "seqno": 6,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgeQl5ClCZ166oqzhFomMkzE7WMK3Ut7IOBBd2U8JXNWgKp3BheWxvYWTFAvZ7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwNzkwOTc5MGE1MDk5ZDdhZWE4YWIzODQ1YTI2MzI0Y2M0ZWQ2MzBhZGQ0YjdiMjBlMDQxNzc2NTNjMjU3MzU2ODBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNzkwOTc5MGE1MDk5ZDdhZWE4YWIzODQ1YTI2MzI0Y2M0ZWQ2MzBhZGQ0YjdiMjBlMDQxNzc2NTNjMjU3MzU2ODBhIiwidWlkIjoiMTdkN2FmZTM4Mjk1MWUzMDkzZjM4ZDUyODA0ZjY1MTkiLCJ1c2VybmFtZSI6ImhpbWFsYXkifSwic2VydmljZSI6eyJob3N0bmFtZSI6ImhpbWFsYXkuY29tLm5wIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMjIifSwiY3RpbWUiOjE0OTQ5MjU5NDksImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ5NDkyNTkyNSwiaGFzaCI6IjZkNTJmMTFhODcyMDY3OGMxOGExNWQwYTA3OGExNmU2NWNkNjIxNDM5YmI2NGRmYjdiN2IxNTEwNDI3M2M5NmIyN2MzN2JlMmY2NjdkYTJiNWE4ZDYwNGU4YjQzOWRkMGQ4MzlmZmZmYjc4M2MwZGU2NTI4ZTk5MWM0YTM4NGIzIiwic2Vxbm8iOjEwODY5ODR9LCJwcmV2IjoiMmFkNjcyNThiZDZhZTg4Mzc3Mjk1NGQyYzdlY2ZhOWE0ZjhiMGY5MTY1OGVlNTUyYzU1ZTM2YzVhMmQ0MzY0NiIsInNlcW5vIjo2LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQApqzYR8ydZHHJK58jJ5IYhgdXJ4naA+0WOQTBWielqm1Mq1HRK0YbqCiJ7bUH9m1D9H2gkQKLUAjmqGZ9q4OQeoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCDDRI31c/1UofQxZUktCXXlt8uubU6QO9tSUPyUM5Cqt6N0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/himalay
+
+==================================================================
