@@ -7,16 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var closeBtnEl = document.querySelector('#search-close')
 
   if (!searchData.length) {
-    atomic.get('/search.json')
-    .success(function (data, xhr) {
-      searchData = data
+    var req = new XMLHttpRequest()
+    req.addEventListener('load', function () {
+      searchData = JSON.parse(this.responseText)
     })
-    .error(function (data, xhr) {
-      console.error(data)
-    })
-    .always(function (data, xhr) {
-
-    })
+    req.open('GET', '/search.json')
+    req.send()
   }
 
   searchBtnEl.addEventListener('click', toggleHidden)
