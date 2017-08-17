@@ -10,7 +10,6 @@ collections:
     title: Uploads
     output: true
 
-email: your-email@domain.com
 description: I am a programmer from Himalayas. I speak Java, Python and JavaScript.
 baseurl: ''
 url: https://himalay.com.np
