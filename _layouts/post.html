@@ -47,26 +47,39 @@
 <span class="punctuation">}</span>
   </body>
   <script>
-  var commentsEl = document.querySelector('#comments')
-  atomic.get('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments')
-  .success(function (comments, xhr) {
-  document.querySelector('#count').textContent = comments.length
-  comments.map(function (c) {
-    atomic.setContentType('text/plain')
-    atomic.post('https://api.github.com/markdown/raw', c.body)
-    .success(function (htmlComment, xhr) {
-      var createdDate = new Date(c.created_at).toString().match(/(\w+\s\d+\s\d+)\s(\d+:\d+)/)
-      commentsEl.appendChild(Object.assign(document.createElement('div'), {
-        className: 'comment',
-        innerHTML: htmlComment + '<a class="login" href="https://github.com/' + c.user.login + '" target="_blank">@' + c.user.login + '</a> <small>' + createdDate[1] + ' at ' + createdDate[2] + '</small>'
-      }))
-    })
-    .error(console.error)
-  })
-  })
-  .error(console.error)
-  .always(function () {
-    document.querySelector('.loader').classList.toggle('loader')
+  document.addEventListener('DOMContentLoaded', function () {
+    var commentsEl = document.querySelector('#comments')
+    fetch('https://api.github.com/repos/himalay/himalay.github.io/issues/{{ page.commentIssueId }}/comments')
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (comments) {
+      document.querySelector('#count').textContent = comments.length
+      comments.map(function (c) {
+        fetch('https://api.github.com/markdown/raw', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: c.body
+        })
+          .then(function (response) {
+            return response.text()
+          })
+          .then(function (htmlComment) {
+            var createdDate = new Date(c.created_at).toString().match(/(\w+\s\d+\s\d+)\s(\d+:\d+)/)
+            commentsEl.appendChild(Object.assign(document.createElement('div'), {
+              className: 'comment',
+              innerHTML: htmlComment + '<a class="login" href="https://github.com/' + c.user.login + '" target="_blank">@' + c.user.login + '</a> <small>' + createdDate[1] + ' at ' + createdDate[2] + '</small>'
+            }))
+          })
+          .catch(console.error)
+        })
+      })
+      .then(function () {
+        document.querySelector('.loader').classList.toggle('loader')
+      })
+      .catch(console.error)
   })
   </script>
 </html>

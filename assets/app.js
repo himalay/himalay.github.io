@@ -7,12 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var closeBtnEl = document.querySelector('#search-close')
 
   if (!searchData.length) {
-    var req = new XMLHttpRequest()
-    req.addEventListener('load', function () {
-      searchData = JSON.parse(this.responseText)
+    fetch('/search.json')
+    .then(function (response) {
+      return response.json()
+    }).then(function (json) {
+      searchData = json
+    }).catch(function (ex) {
+      console.log('parsing failed', ex)
     })
-    req.open('GET', '/search.json')
-    req.send()
   }
 
   searchBtnEl.addEventListener('click', toggleHidden)
