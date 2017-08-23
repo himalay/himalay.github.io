@@ -175,8 +175,8 @@ article{
   color: $key-color;
 }
 
-.value:before, .value:after {
-  content: "'";
+.key:before, .value:before, .key:after, .value:after {
+  content: '"';
 }
 
 .punctuation {
