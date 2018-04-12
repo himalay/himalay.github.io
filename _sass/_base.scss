@@ -131,7 +131,7 @@ pre {
 }
 
 .obj-pros {
-  margin-left: 2em;
+  margin-left: 1em;
   h1, h2, p {
     display: inline;
   }
@@ -228,10 +228,9 @@ a:hover {
       color: $red-color;
       font-size: 1.5em;
       border: 0;
-      top: 0.5em;
+      top: 0;
       outline: none;
       left: 0;
-      right: 0;
       margin-left: auto;
       margin-right: auto;
       cursor: pointer;
@@ -246,7 +245,7 @@ a:hover {
     }
 
     .search-input {
-      width: calc(100% - 80px);
+      width: calc(100% - 100px);
       max-width: 512px;
       background: transparent;
       display: inline-block;
