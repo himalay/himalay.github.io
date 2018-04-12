@@ -171,6 +171,11 @@ article{
       margin-left: 1.5em;
     }
 }
+
+.input-wrapper {
+  display: inline;
+}
+
 .key, .input-wrapper {
   color: $key-color;
 }
@@ -244,9 +249,12 @@ a:hover {
       }
     }
 
-    .search-input {
+    .input-width {
       width: calc(100% - 104px);
       max-width: 512px;
+    }
+
+    .search-input {
       background: transparent;
       display: inline-block;
       border: 0;
