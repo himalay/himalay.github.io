@@ -171,11 +171,11 @@ article{
       margin-left: 1.5em;
     }
 }
-.key {
+.key, .input-wrapper {
   color: $key-color;
 }
 
-.key:before, .value:before, .key:after, .value:after {
+.key:before, .value:before, .key:after, .value:after, .input-wrapper:before, .input-wrapper:after {
   content: '"';
 }
 
