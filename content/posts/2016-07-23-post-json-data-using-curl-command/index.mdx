@@ -1,0 +1,28 @@
+---
+title: Post JSON data using cURL command
+date: 2016-07-23
+hero: ./images/curl-post.png
+excerpt: In this post I would like to show how to make post request with `JSON` data using `curl` cli tool.
+---
+
+In this post I would like to show how to make post request with `JSON` data using `curl` cli tool.
+
+### Inline JSON
+
+```shell
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-d '{"username":"xyz","password":"xyz"}' \
+https://httpstat.us/200
+```
+
+### JSON file
+
+```shell
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-d @auth.json \
+https://httpstat.us/200
+```
