@@ -95,13 +95,13 @@ const SEO: React.FC<HelmetProps> = ({
   const fullURL = (path: string) => (path ? `${path}` : site.siteUrl)
 
   // If no image is provided lets looks for a default novela static image
-  image = image || `${site.siteUrl}/preview.jpg`
+  let imageUrl = image || `${site.siteUrl}/preview.jpg`
 
   // Checks if the source of the image is hosted on Contentful
-  if (`${image}`.includes('ctfassets')) {
-    image = `${image}`
+  if (`${imageUrl}`.includes('ctfassets')) {
+    imageUrl = `${imageUrl}`
   } else {
-    image = fullURL(image)
+    imageUrl = fullURL(imageUrl)
   }
 
   const siteSchema = minifyJSON(`{
@@ -220,7 +220,7 @@ const SEO: React.FC<HelmetProps> = ({
         "@type": "ImageObject",
         "@id": "${articlepathName}/#primaryimage",
         "inLanguage": "en-US",
-        "url": "${image}",
+        "url": "${imageUrl}",
         "width": 1200,
         "height": 628
       },
@@ -319,7 +319,7 @@ const SEO: React.FC<HelmetProps> = ({
 
   const schema = isBlogPost ? blogSchema : siteSchema
 
-  const metaTags = [
+  const metaTags: { [key: string]: string }[] = [
     { charset: 'utf-8' },
     {
       'http-equiv': 'X-UA-Compatible',
@@ -335,7 +335,7 @@ const SEO: React.FC<HelmetProps> = ({
     },
     { itemprop: 'name', content: title || site.title },
     { itemprop: 'description', content: description || site.description },
-    { itemprop: 'image', content: image },
+    { itemprop: 'image', content: imageUrl },
     { name: 'description', content: description || site.description },
 
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -345,13 +345,13 @@ const SEO: React.FC<HelmetProps> = ({
     { name: 'twitter:creator', content: twitter },
     {
       name: 'twitter:image',
-      content: image,
+      content: imageUrl,
     },
 
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: title || site.title },
     { property: 'og:url', content: articlepathName || pageUrl },
-    { property: 'og:image', content: image },
+    { property: 'og:image', content: imageUrl },
     { property: 'og:description', content: description || site.description },
     { property: 'og:site_name', content: site.name },
   ]
