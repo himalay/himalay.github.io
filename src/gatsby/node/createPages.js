@@ -43,8 +43,6 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     }
   `)
 
-  console.log(sources)
-
   let articles
 
   const dataSources = {
@@ -105,24 +103,24 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   log('Creating', 'article posts')
   articles.forEach((article, index) => {
+    const articleUrl = `${data.site.siteMetadata.siteUrl}${article.slug}/`
     let next = articles.slice(index + 1, index + 3)
     // If it's the last item in the list, there will be no articles. So grab the first 2
     if (next.length === 0) next = articles.slice(0, 2)
     // If there's 1 item in the list, grab the first article
     if (next.length === 1 && articles.length !== 2) next = [...next, articles[0]]
     if (articles.length === 1) next = []
-
     createPage({
       path: article.slug,
       component: templates.article,
       context: {
         article,
         basePath,
-        permalink: `${data.site.siteMetadata.siteUrl}/${article.slug}/`,
+        permalink: articleUrl,
         slug: article.slug,
         id: article.id,
         title: article.title,
-        canonicalUrl: article.canonical_url,
+        canonicalUrl: articleUrl,
         mailchimp,
         next,
       },

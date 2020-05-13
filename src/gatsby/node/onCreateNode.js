@@ -1,7 +1,7 @@
 /* eslint-disable no-prototype-builtins */
 
 const crypto = require('crypto')
-const slugify = require('slugify')
+const generateSlug = require('./generateSlug')
 
 // Create fields for post slugs and source
 // This will change with schema customization with work
@@ -9,52 +9,17 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
   const { createNode, createParentChildLink } = actions
   const contentPath = themeOptions.contentPath || 'content/posts'
   const basePath = themeOptions.basePath || '/'
-  const articlePermalinkFormat = themeOptions.articlePermalinkFormat || ':slug'
 
   // Create source field (according to contentPath)
   const fileNode = getNode(node.parent)
   const source = fileNode && fileNode.sourceInstanceName
 
-  // ///////////////// Utility functions ///////////////////
-
-  function generateArticlePermalink(slug, date) {
-    const [year, month, day] = date.match(/\d{4}-\d{2}-\d{2}/)[0].split('-')
-    const permalinkData = {
-      year,
-      month,
-      day,
-      slug,
-    }
-
-    const permalink = articlePermalinkFormat.replace(/(:[a-z_]+)/g, (match) => {
-      const key = match.substr(1)
-      if (permalinkData.hasOwnProperty(key)) {
-        return permalinkData[key]
-      }
-      throw new Error(`
-          We could not find the value for: "${key}".
-          Please verify the articlePermalinkFormat format in theme options.
-          https://github.com/narative/gatsby-theme-novela#theme-options
-        `)
-    })
-
-    return permalink
-  }
-
-  function generateSlug(...arguments_) {
-    return `/${arguments_.join('/')}`.toLowerCase().replace(/\/\/+/g, '/')
-  }
-
   if (node.internal.type === 'Mdx' && source === contentPath) {
     const fieldData = {
       date: node.frontmatter.date,
       hero: node.frontmatter.hero,
-      slug: generateSlug(
-        basePath,
-        generateArticlePermalink(slugify(node.frontmatter.slug || node.frontmatter.title), node.frontmatter.date),
-      ),
+      slug: generateSlug(basePath, node.frontmatter.slug || node.frontmatter.title, node.frontmatter.date),
       title: node.frontmatter.title,
-      canonical_url: node.frontmatter.canonical_url,
     }
 
     createNode({
