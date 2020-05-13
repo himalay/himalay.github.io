@@ -54,12 +54,12 @@ const GridItem: React.FC<GridItemProps> = ({ article, narrow }) => {
     <ArticleLink to={article.slug} data-a11y="false" narrow={narrow ? 'true' : 'false'}>
       <Item>
         <ImageContainer>
-          <Image src={imageSource} />
+          <Image src={imageSource} alt={article.title} />
         </ImageContainer>
         <Title dark hasOverflow={hasOverflow}>
           {article.title}
         </Title>
-        <Excerpt hasOverflow={hasOverflow}>{article.excerpt}</Excerpt>
+        <Excerpt hasOverflow={!!hasOverflow}>{article.excerpt}</Excerpt>
         <MetaData>
           {article.date} · {article.timeToRead} min read
         </MetaData>{' '}
@@ -169,7 +169,7 @@ const Title = styled(Headings.h3)`
   `}
 `
 
-const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
+const Excerpt = styled.p<{ narrow?: boolean; hasOverflow: boolean }>`
   ${limitToTwoLines};
   font-size: 16px;
   margin-bottom: 10px;
