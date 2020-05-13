@@ -25,7 +25,6 @@ module.exports.local = {
           dateForSEO: date
           timeToRead
           excerpt
-          canonical_url
           body
           hero {
             full: childImageSharp {

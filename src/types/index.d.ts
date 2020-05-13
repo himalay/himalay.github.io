@@ -39,8 +39,6 @@ export interface Article {
   timeToRead: number
   date: string
   dateForSEO: string
-  // eslint-disable-next-line camelcase
-  canonical_url: string
 }
 
 interface ArticleQuery {
