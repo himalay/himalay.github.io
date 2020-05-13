@@ -67,6 +67,7 @@ const Footer: React.FC<{}> = () => {
   return (
     <Section narrow>
       <KeyValue objKey="social" objValue={formatSocial(social)} />
+      <KeyValue objKey="sitemap" objValue="/sitemap.xml" to="/sitemap.xml" />
       <KeyValue objKey="rss" objValue="/rss.xml" to="/rss.xml" isLast />
     </Section>
   )
