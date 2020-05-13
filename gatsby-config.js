@@ -1,3 +1,6 @@
+const generateSlug = require('./src/gatsby/node/generateSlug')
+
+/* eslint-disable no-param-reassign */
 const name = 'Himalay Sunuwar'
 const siteMetadata = {
   name,
@@ -59,37 +62,56 @@ module.exports = {
           }
         }
         `,
-        setup: (props) => ({
-          feed_url: `${siteMetadata.siteUrl}/rss.xml`,
-          image_url: `${siteMetadata.siteUrl}/icons/icon-512x512.png`,
-          ...props,
-        }),
+        setup: ({ query, ...rest }) => {
+          const { siteUrl } = query.site.siteMetadata
+          query.site.siteMetadata.feed_url = `${siteUrl}/rss.xml`
+          query.site.siteMetadata.image_url = `${siteUrl}/icons/icon-512x512.png`
+          const siteMetadataModified = query.site.siteMetadata
+          siteMetadataModified.feed_url = `${siteUrl}/rss.xml`
+          siteMetadataModified.image_url = `${siteUrl}/icons/icon-512x512.png`
+          return {
+            ...siteMetadataModified,
+            ...rest,
+          }
+        },
         feeds: [
           {
-            serialize: ({ query: { allArticle } }) =>
-              allArticle.edges.map((edge) => {
+            serialize: ({ query: { allMdx } }) => {
+              return allMdx.edges.map((edge) => {
+                const { frontmatter, html } = edge.node
+                const basePath = '/'
+                const slug = generateSlug(basePath, frontmatter.slug || frontmatter.title, frontmatter.date)
+
                 return {
-                  ...edge.node,
-                  description: edge.node.excerpt,
-                  date: edge.node.date,
-                  url: siteMetadata.siteUrl + edge.node.slug,
-                  guid: siteMetadata.siteUrl + edge.node.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.body }],
+                  title: frontmatter.title,
+                  date: frontmatter.date,
+                  description: frontmatter.excerpt,
+                  url: siteMetadata.siteUrl + slug,
+                  guid: siteMetadata.siteUrl + slug,
+                  enclosure: {
+                    url: siteMetadata.siteUrl + (frontmatter.hero.publicURL || '/icons/icon-512x512.png'),
+                  },
+                  custom_elements: [{ 'content:encoded': html }],
                 }
-              }),
+              })
+            },
             query: `
             {
-              allArticle(sort: {order: DESC, fields: date}) {
-                edges {
-                  node {
-                    body
+              allMdx(sort: {order: DESC, fields: frontmatter___date}) {
+              edges {
+                node {
+                  html
+                  frontmatter {
+                    title
                     excerpt
                     date
-                    slug
-                    title
+                    hero {
+                      publicURL
+                    }
                   }
                 }
               }
+            }
             }
             `,
             output: '/rss.xml',
