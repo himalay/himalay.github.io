@@ -20,17 +20,19 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
+import { minifyJSON } from '@utils'
 
 interface HelmetProps {
-  title?: string
-  author?: string
-  description?: string
-  pathname: string
-  image?: string
-  url?: string
+  articlepathName?: string
   canonicalUrl?: string
+  dateforSEO?: string
+  description?: string
+  image?: string
+  isBlogPost: boolean
+  pathname: string
   published?: string
   timeToRead?: number
+  title?: string
 }
 
 const seoQuery = graphql`
@@ -42,15 +44,19 @@ const seoQuery = graphql`
             description
             social {
               twitter
+              github
+              linkedin
             }
             siteUrl
             title
+            name
           }
         }
       }
     }
   }
 `
+
 const themeUIDarkModeWorkaroundScript = [
   {
     type: 'text/javascript',
@@ -68,26 +74,252 @@ const themeUIDarkModeWorkaroundScript = [
 ]
 
 const SEO: React.FC<HelmetProps> = ({
-  title,
-  author,
-  description,
+  articlepathName,
+  canonicalUrl,
   children,
-  pathname,
+  dateforSEO,
+  description,
   image,
+  isBlogPost = false,
+  pathname,
   published,
   timeToRead,
-  canonicalUrl,
+  title,
 }) => {
   const results = useStaticQuery(seoQuery)
   const site = results.allSite.edges[0].node.siteMetadata
-  const { twitter } = site.social
+  const { twitter, github, linkedin } = site.social
 
-  const fullURL = (path: string) => (path ? `${site.siteUrl}${path}` : site.siteUrl)
+  const pageUrl = site.siteUrl + pathname
+
+  const fullURL = (path: string) => (path ? `${path}` : site.siteUrl)
 
   // If no image is provided lets looks for a default novela static image
-  const imageURL = fullURL(image || '/preview.jpg')
+  image = image || `${site.siteUrl}/preview.jpg`
 
-  const metaTags: { [key: string]: string }[] = [
+  // Checks if the source of the image is hosted on Contentful
+  if (`${image}`.includes('ctfassets')) {
+    image = `${image}`
+  } else {
+    image = fullURL(image)
+  }
+
+  const siteSchema = minifyJSON(`{
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "${site.siteUrl}/#organization",
+        "name": "${site.title}",
+        "url": "${site.siteUrl}",
+        "sameAs": [
+          "${twitter}",
+          "${github}",
+          "${linkedin}"
+        ],
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "${site.siteUrl}/#logo",
+          "inLanguage": "en-US",
+          "url": "${site.siteUrl}/icons/icon-512x512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "${site.title}"
+        },
+        "image": {
+          "@id": "${site.siteUrl}/#logo"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "${site.siteUrl}/#website",
+        "url": "${site.siteUrl}",
+        "name": "${site.name}",
+        "description": "${site.description}",
+        "potentialAction": {
+          "@type": "Searcpm garekoction",
+          "target": "${site.siteUrl}/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+        "publisher": {
+          "@id": "${site.siteUrl}/#organization"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": [
+          "WebPage"
+        ],
+        "@id": "${pageUrl}/#webpage",
+        "url": "${pageUrl}",
+        "name": "${title || site.name}",
+        "isPartOf": {
+          "@id": "${site.siteUrl}/#website"
+        },
+        "about": {
+          "@id": "${site.siteUrl}/#organization"
+        },
+        "description": "${description || site.description}",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "description": "Breadcrumbs list",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "item": "${site.siteUrl}",
+            "name": "Homepage",
+            "position": "1"
+          }
+        ],
+        "name": "Breadcrumbs"
+      }
+    ]
+  }
+`)
+
+  const blogSchema = minifyJSON(`{
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "${site.siteUrl}/#organization",
+        "name": "${site.title}",
+        "url": "${site.siteUrl}",
+        "sameAs": [
+          "${twitter}",
+          "${github}",
+          "${linkedin}"
+        ],
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "${site.siteUrl}/#logo",
+          "inLanguage": "en-US",
+          "url": "${site.siteUrl}/icons/icon-512x512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "${site.title}"
+        },
+        "image": {
+          "@id": "${site.siteUrl}/#logo"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "${site.siteUrl}/#website",
+        "url": "${site.siteUrl}",
+        "name": "${site.name}",
+        "description": "${site.description.replace(/"/g, '\\"')}",
+        "publisher": {
+          "@id": "${site.siteUrl}/#organization"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "${articlepathName}/#primaryimage",
+        "inLanguage": "en-US",
+        "url": "${image}",
+        "width": 1200,
+        "height": 628
+      },
+      {
+        "@type": [
+          "WebPage"
+        ],
+        "@id": "${articlepathName}/#webpage",
+        "url": "${articlepathName}",
+        "name": "${title}",
+        "isPartOf": {
+          "@id": "${site.siteUrl}/#website"
+        },
+        "primaryImageOfPage": {
+          "@id": "${articlepathName}/#primaryimage"
+        },
+        "datePublished": "${dateforSEO}",
+        "dateModified": "${dateforSEO}",
+        "description": "${description}",
+        "breadcrumb": {
+          "@id": "${articlepathName}/#breadcrumb"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "${articlepathName}/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "WebPage",
+              "@id": "${site.siteUrl}",
+              "url": "${site.siteUrl}",
+              "name": "Home"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "WebPage",
+              "@id": "${articlepathName}",
+              "url": "${articlepathName}",
+              "name": "${title}"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "${articlepathName}/#article",
+        "isPartOf": {
+          "@id": "${articlepathName}/#webpage"
+        },
+        "author": {
+          "@id": "${site.siteUrl}/#/schema"
+        },
+        "headline": "${title}",
+        "datePublished": "${dateforSEO}",
+        "dateModified": "${dateforSEO}",
+        "mainEntityOfPage": {
+          "@id": "${articlepathName}/#webpage"
+        },
+        "publisher": {
+          "@id": "${site.siteUrl}/#organization"
+        },
+        "image": {
+          "@id": "${articlepathName}/#primaryimage"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": [
+          "Person"
+        ],
+        "@id": "${site.siteUrl}/#/schema",
+        "name": "${site.name}",
+        "image": {
+          "@type": "ImageObject",
+        "@id": "${site.siteUrl}/#personlogo",
+          "inLanguage": "en-US",
+          "caption": "${site.name}"
+        },
+        "description": "${site.bio}",
+        "sameAs": [
+          "${twitter}",
+          "${github}",
+          "${linkedin}"
+        ]
+      }
+    ]
+  }
+`)
+
+  const schema = isBlogPost ? blogSchema : siteSchema
+
+  const metaTags = [
     { charset: 'utf-8' },
     {
       'http-equiv': 'X-UA-Compatible',
@@ -99,29 +331,29 @@ const SEO: React.FC<HelmetProps> = ({
     },
     {
       name: 'theme-color',
-      content: '#002b36',
+      content: '#fff',
     },
     { itemprop: 'name', content: title || site.title },
     { itemprop: 'description', content: description || site.description },
-    { itemprop: 'image', content: imageURL },
+    { itemprop: 'image', content: image },
     { name: 'description', content: description || site.description },
 
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: site.name },
     { name: 'twitter:title', content: title || site.title },
     { name: 'twitter:description', content: description || site.description },
-    { name: 'twitter:creator', content: `https://twitter.com/${twitter}` },
+    { name: 'twitter:creator', content: twitter },
     {
       name: 'twitter:image',
-      content: imageURL,
+      content: image,
     },
 
-    { property: 'og:title', content: title || site.title },
-    { property: 'og:url', content: site.siteUrl + pathname },
-    { property: 'og:image', content: imageURL },
-    { property: 'og:description', content: description || site.description },
-    { property: 'og:site_name', content: site.title },
     { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: title || site.title },
+    { property: 'og:url', content: articlepathName || pageUrl },
+    { property: 'og:image', content: image },
+    { property: 'og:description', content: description || site.description },
+    { property: 'og:site_name', content: site.name },
   ]
 
   if (published) {
@@ -133,17 +365,14 @@ const SEO: React.FC<HelmetProps> = ({
     metaTags.push({ name: 'twitter:data1', value: `${timeToRead} min read` })
   }
 
-  if (author) {
-    metaTags.push({ name: 'author', content: author })
-  }
-
   return (
     <Helmet
       title={title || site.title}
       htmlAttributes={{ lang: 'en' }}
-      meta={metaTags}
       script={themeUIDarkModeWorkaroundScript}
+      meta={metaTags}
     >
+      <script type="application/ld+json">{schema}</script>
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       {children}
     </Helmet>

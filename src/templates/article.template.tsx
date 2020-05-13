@@ -17,11 +17,6 @@ import ArticleSEO from '@sections/article/Article.SEO'
 import ArticleShare from '@sections/article/Article.Share'
 import NextArticle from '@components/NextArticle'
 
-const author = {
-  name: 'Himalay Sunuwar',
-  bio: 'He is the one who writes stuff.',
-  avatar: '/favicon-32x32.png',
-}
 const Article: Template = ({ pageContext, location }) => {
   const contentSectionRef = useRef<HTMLElement>(null)
 
@@ -66,8 +61,8 @@ const Article: Template = ({ pageContext, location }) => {
 
   return (
     <Layout>
-      <ArticleSEO article={article} author={author} location={location} />
-      <ArticleHero article={article} author={author} />
+      <ArticleSEO article={article} location={location} />
+      <ArticleHero article={article} />
       <ArticleAside contentHeight={contentHeight}>
         <Progress contentHeight={contentHeight} />
       </ArticleAside>

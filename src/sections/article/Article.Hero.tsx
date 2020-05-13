@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import Headings from '@components/Headings'
 import Image, { ImagePlaceholder } from '@components/Image'
@@ -7,11 +8,27 @@ import Image, { ImagePlaceholder } from '@components/Image'
 import mediaqueries from '@styles/media'
 import { Article, Author } from '@types'
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            name
+            bio
+            siteUrl
+          }
+        }
+      }
+    }
+  }
+`
+
 const ArticleAuthor: React.FC<{ author: Author }> = ({ author }) => {
   return (
     <AuthorWrapper>
       <AuthorAvatar>
-        <RoundedImage src={author.avatar} />
+        <RoundedImage src={author.avatar} alt={author.name} />
       </AuthorAvatar>
       <strong>{author.name}</strong>
       <HideOnMobile>,&nbsp;</HideOnMobile>
@@ -24,7 +41,9 @@ interface ArticleHeroProps {
   author: Author
 }
 
-const ArticleHero: React.FC<ArticleHeroProps> = ({ article, author }) => {
+const ArticleHero: React.FC<ArticleHeroProps> = ({ article }) => {
+  const results = useStaticQuery(siteQuery)
+  const { name, bio, siteUrl } = results.allSite.edges[0].node.siteMetadata
   const hasHeroImage =
     article.hero && Object.keys(article.hero.full).length !== 0 && article.hero.full.constructor === Object
 
@@ -33,7 +52,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, author }) => {
       <Header>
         <HeroHeading>{article.title}</HeroHeading>
         <HeroSubtitle>
-          <ArticleAuthor author={author} />
+          <ArticleAuthor author={{ name, bio, avatar: `${siteUrl}/icons/icon-512x512.png` }} />
           <ArticleMeta>
             {article.date} · {article.timeToRead} min read
           </ArticleMeta>

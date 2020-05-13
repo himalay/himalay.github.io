@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-import { Helmet } from 'react-helmet'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { Result } from 'react-use-flexsearch'
@@ -10,23 +8,7 @@ import KeyValue, { Mark } from '@components/KeyValue'
 import Foldable from '@components/Foldable'
 import Search from '@components/Search'
 import Paginator from '@components/Navigation/Navigation.Paginator'
-import { minifyJSON } from '@utils'
 import himalayLogo from '@assets/himalay_logo.png'
-
-const siteQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            name
-            siteUrl
-          }
-        }
-      }
-    }
-  }
-`
 
 interface ArticlesListProps {
   pageContext: PageContext
@@ -34,8 +16,6 @@ interface ArticlesListProps {
 }
 
 const ArticlesList: React.FC<ArticlesListProps> = ({ pageContext, alwaysShowAllDetails }) => {
-  const results = useStaticQuery(siteQuery)
-  const { name, siteUrl } = results.allSite.edges[0].node.siteMetadata
   const articles = pageContext.group
 
   if (!articles) return null
@@ -44,22 +24,6 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ pageContext, alwaysShowAllD
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {minifyJSON(`{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "${siteUrl}/",
-            "name": "${name}",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "${siteUrl}/?s={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
-          }
-        `)}
-        </script>
-      </Helmet>
       <ArticlesListContainer alwaysShowAllDetails={alwaysShowAllDetails}>
         <Search onSearchResults={(r) => setSearchResult(r)} />
         <Hidden>
