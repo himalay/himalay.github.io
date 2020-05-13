@@ -1,14 +1,73 @@
-import React, { useState } from 'react'
-import { navigate } from 'gatsby'
+import React, { useState, useEffect } from 'react'
+import { navigate, graphql, useStaticQuery } from 'gatsby'
 
 import Section from '@components/Section'
 import Headings from '@components/Headings'
 import styled from '@emotion/styled'
 import mediaqueries from '@styles/media'
 import Layout from '@components/Layout'
+import NextArticle from '@components/NextArticle'
 
-const NotFound: React.FC<{}> = () => {
+const articlesQuery = graphql`
+  {
+    allArticle(sort: { fields: [date, title], order: DESC }, limit: 2) {
+      edges {
+        node {
+          id
+          slug
+          title
+          excerpt
+          timeToRead
+          date(formatString: "MMMM Do, YYYY")
+          hero {
+            regular: childImageSharp {
+              fluid(maxWidth: 653, quality: 100) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
+            }
+            narrow: childImageSharp {
+              fluid(maxWidth: 457, quality: 100) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const NotFound: React.FC = () => {
   const [query, setQuery] = useState('')
+  const [latestArticles, setLatestArticles] = useState<any>(null)
+  const results = useStaticQuery(articlesQuery)
+
+  useEffect(() => {
+    if (!latestArticles) {
+      setLatestArticles(
+        results.allArticle.edges.map((x: any) => {
+          // eslint-disable-next-line no-param-reassign
+          x.node.hero = {
+            regular: x.node.hero.regular.fluid,
+            narrow: x.node.hero.narrow.fluid,
+          }
+          return x.node
+        }),
+      )
+    }
+  }, [results])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -41,6 +100,7 @@ const NotFound: React.FC<{}> = () => {
           </Content>
         </NotFoundContainer>
       </Section>
+      {latestArticles?.length > 0 && <NextArticle title="Latest articles" articles={latestArticles} />}
     </Layout>
   )
 }

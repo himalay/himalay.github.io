@@ -1,8 +1,6 @@
-/* eslint-disable */
-
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-sharp/src/fragments.js
 
-const GatsbyFluid_withWebp = `
+const GatsbyFluidWithWebp = `
   base64
   aspectRatio
   src
@@ -32,17 +30,17 @@ module.exports.local = {
           hero {
             full: childImageSharp {
               fluid(maxWidth: 944, quality: 100) {
-                ${GatsbyFluid_withWebp}
+                ${GatsbyFluidWithWebp}
               }
             }
             regular: childImageSharp {
               fluid(maxWidth: 653, quality: 100) {
-                ${GatsbyFluid_withWebp}
+                ${GatsbyFluidWithWebp}
               }
             }
             narrow: childImageSharp {
               fluid(maxWidth: 457, quality: 100) {
-                ${GatsbyFluid_withWebp}
+                ${GatsbyFluidWithWebp}
               }
             }
             seo: childImageSharp {

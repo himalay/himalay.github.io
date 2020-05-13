@@ -5,7 +5,6 @@ import throttle from 'lodash/throttle'
 import Layout from '@components/Layout'
 import MDXRenderer from '@components/MDX'
 import Progress from '@components/Progress'
-import Section from '@components/Section'
 
 import mediaqueries from '@styles/media'
 import { debounce } from '@utils'
@@ -14,9 +13,9 @@ import { Template } from '@types'
 import ArticleAside from '@sections/article/Article.Aside'
 import ArticleHero from '@sections/article/Article.Hero'
 import ArticleControls from '@sections/article/Article.Controls'
-import ArticlesNext from '@sections/article/Article.Next'
 import ArticleSEO from '@sections/article/Article.SEO'
 import ArticleShare from '@sections/article/Article.Share'
+import NextArticle from '@components/NextArticle'
 
 const author = {
   name: 'Himalay Sunuwar',
@@ -80,13 +79,7 @@ const Article: Template = ({ pageContext, location }) => {
           <ArticleShare />
         </MDXRenderer>
       </ArticleBody>
-      {next.length > 0 && (
-        <NextArticle narrow>
-          <FooterNext>More articles</FooterNext>
-          <ArticlesNext articles={next} />
-          <FooterSpacer />
-        </NextArticle>
-      )}
+      {next.length > 0 && <NextArticle articles={next} />}
     </Layout>
   )
 }
@@ -121,46 +114,4 @@ const ArticleBody = styled.article`
   ${mediaqueries.phablet`
     padding: 60px 0;
   `}
-`
-
-const NextArticle = styled(Section)`
-  display: block;
-`
-
-const FooterNext = styled.h3`
-  position: relative;
-  opacity: 0.25;
-  margin-bottom: 100px;
-  font-weight: 400;
-  color: ${(p: ThemedProp) => p.theme.colors.primary};
-
-  ${mediaqueries.tablet`
-    margin-bottom: 60px;
-  `}
-
-  &::after {
-    content: '';
-    position: absolute;
-    background: ${(p: ThemedProp) => p.theme.colors.grey};
-    width: ${(910 / 1140) * 100}%;
-    height: 1px;
-    right: 0;
-    top: 11px;
-
-    ${mediaqueries.tablet`
-      width: ${(600 / 1140) * 100}%;
-    `}
-
-    ${mediaqueries.phablet`
-      width: ${(400 / 1140) * 100}%;
-    `}
-
-    ${mediaqueries.phone`
-      width: 90px
-    `}
-  }
-`
-
-const FooterSpacer = styled.div`
-  margin-bottom: 65px;
 `
