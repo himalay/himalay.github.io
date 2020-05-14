@@ -140,7 +140,7 @@ const SEO: React.FC<HelmetProps> = ({
           "@type": "Searcpm garekoction",
           "target": "${site.siteUrl}/?s={search_term_string}",
           "query-input": "required name=search_term_string"
-        }
+        },
         "publisher": {
           "@id": "${site.siteUrl}/#organization"
         },
