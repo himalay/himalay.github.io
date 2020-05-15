@@ -1,0 +1,89 @@
+# Name of the property. You can have multiple properties with completely
+# different config blocks for different sections of your site.
+# For example, you can have one property to handle comment submission and
+# another one to handle posts.
+comments:
+  # (*) REQUIRED
+  #
+  # Names of the fields the form is allowed to submit. If a field that is
+  # not here is part of the request, an error will be thrown.
+  allowedFields: ["name", "email", "url", "message", "replying_to_uid"]
+
+  # (*) REQUIRED WHEN USING NOTIFICATIONS
+  #
+  # When allowedOrigins is defined, only requests sent from one of the domains
+  # listed will be accepted. The origin is sent as part of the `options` object
+  # (e.g. <input name="options[origin]" value="http://yourdomain.com/post1")
+  allowedOrigins: ["himalay.com.np"]
+
+  # (*) REQUIRED
+  #
+  # Name of the branch being used. Must match the one sent in the URL of the
+  # request.
+  branch: master
+
+  # Text to use as the commit message or pull request title. Accepts placeholders.
+  commitMessage: "Comment from {fields.name} on {options.slug}"
+
+  # (*) REQUIRED
+  #
+  # Destination path (filename) for the data files. Accepts placeholders.
+  filename: "entry{@timestamp}"
+
+  # The format of the generated data files. Accepted values are "json", "yaml"
+  # or "frontmatter"
+  format: "yaml"
+
+  # List of fields to be populated automatically by Staticman and included in
+  # the data file. Keys are the name of the field. The value can be an object
+  # with a `type` property, which configures the generated field, or any value
+  # to be used directly (e.g. a string, number or array)
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "timestamp-seconds"
+
+  # Whether entries need to be appproved before they are published to the main
+  # branch. If set to `true`, a pull request will be created for your approval.
+  # Otherwise, entries will be published to the main branch automatically.
+  moderation: true
+
+  # Name of the site. Used in notification emails.
+  name: "Himalay Sunuwar"
+
+  # Notification settings. When enabled, users can choose to receive notifications
+  # via email when someone adds a reply or a new comment. This requires an account
+  # with Mailgun, which you can get for free at http://mailgun.com.
+  notifications:
+    # Enable notifications
+    enabled: true
+
+    # (!) ENCRYPTED
+    #
+    # Mailgun API key
+    apiKey: "BW202Jb3QDiuaDVi48ikvZKvkKnqjggHYeg890LpJi7tGhUtvXheJnGvvAyrBALzdYNeFQA2qqpoQy8o1Iieli7OJeD4PCtNduXXAOd3xb+l1FhAWVb6XjR+2tp9P2jP0pLyUSfcPNqx8XsPkf6IkTATtB6KryfaDVgauc5LooATff1FCpWcWCQWPfKWYFNl7+0K8o/bOZAyCM/erA80RRYb2Elbqmp9QTIpPvbpn4IbKbnAT/XZQ3VnxZw46cpPbYkrW/PxQsM2V2yOkWjwN3tsVISSe8FysZJ93bifk9iH8D8SmkkLX43IGPKRMdt6ks5KP5qGLoA8D8GlmK0QpiYCppPdQWFAyP6jh7mRy/ZeUkDDxox8MYarUdgmTity6l1UmiFyTMVHT7CL6jQ6uenHGMg5BvEyiA3bPa3fd6/r9wzP7H5Ji8WEAfubdp/WckYBZj3rDSo7Oagogaew2OfSbooyk3w+T023blCNfGkPpMkawYk4Vui2qqKarbEwi9OEDKY6bkJ429iLEVHl8ZfWBIErX1dtaePcsbskUqzFpRGHujt7xZI/fGWbelFPY4mTOt/VcsPlXQNXxGbCRbMYn1+EHpIqd5zj49Yi2RdiZRacI8jMxh15rwSGQiJy0LtJOohmZO1ARQIR8yhbBQzFxqPzXDn68uysRg7+OVk="
+
+    # (!) ENCRYPTED
+    #
+    # Mailgun domain (encrypted)
+    domain: "n5bRP1hXDyKgarol9ophUbZGJ1jmKYQnj6UK8uwU58usUlG/pkyyFA6GdeSSxJrPk55/7z674f5YqlaNLOFBfrWSxD/7hhc3mlqmdkmJ1PNBv0+LTifeK98E+H/RmVXEz2GA6VNwKUe+EMy+OljvprYkoqpGkIZn1k5vAhjAgRDet1pL2RX0IEM9d37krfKNH/1tSiCdHks/k/tbma39rxeAsACZnPq93Djsmtf614EHr0NjQHkxyGad1QX2zkrKUoYPE/Dw/WkanXXKLcGFmg+geuwToUYVeXqKdyuYXGireXCH5P82+qb/YgPjoUI2DccIvOcTzpeIl+OTTkqm+Qh/UIkslHj3Iz4h9kPjaNy185G/1h3RtmGjpYDLSPhY2jlwuNboVATdMRfp5NEtcyTSY/AwKIHd68BkBGSgLA7NO6dO01q9GDoeKeH5Gf0aYbtaIFCpXakWJ2gIXR6laJ4ZNUi17l3Q9G3jrIZfMJT5kGMh/PVM2ARMpvyreUKx9gJ1DoKvhYP56a1RxJFDto9GDw80wXuQKG1/rIYIcD4PsegEQopYcHAzXXmObtt+7jlQYCf0psmodtdjETLV0xLfussLlil3jNaufddby37hlUbvXg1eZEUm4aYRqGilGP/FyiS0iz8++hM23n643BloQ3OWhwAdPdUnetID0ec="
+
+  # (*) REQUIRED
+  #
+  # Destination path (directory) for the data files. Accepts placeholders.
+  path: "_data/comments"
+
+  # Names of required fields. If any of these isn't in the request or is empty,
+  # an error will be thrown.
+  requiredFields: ["name", "message"]
+
+  # List of transformations to apply to any of the fields supplied. Keys are
+  # the name of the field and values are possible transformation types.
+  transforms:
+    email: md5
+
+  reCaptcha:
+    enabled: false
+    siteKey: "6LdWGvcUAAAAAMhFFPCe3Lo_LuvE0XTxe-2o6LBt"
+    secret: "ki2WK6pPjXOxcMD3tltBhYaHBKkL57/4oN80ZUvkgB0hiYzEODMSrVKRkcAJMzwywAUYSi7jac9f/ICqNOZ1AvAr4NJNcRFFU1/1scuM4cM3CA3IUIpq7pzb1O8R4T+Kbm/bk7tXuZnQpomyM/0+VrR0HxSz1YhtGtFkEV5rJvEJhoRrewHKS/8hwSHYws4yXyGhVqv6m+U4XCU9bUkGw/ffMyHFh8UNMOqnZ5PL3cUq1KSwx7qZp86RQYjldqSU9rOocD0zbKszvwMhiA2icNnfssYwENwugGzhrUwWLaUHBDrXpJhQt/bcz/jUV3H5JkfkO8ESdu4phjje6k8klfBWB9QmEKd3ThxftpOkQ9LLHfJbZo0+pChLKh3gHJCo0optYfM7rlxOK+8STgeWPWlZcqqvEjmHyqaP8xsOTHkRVy+JXw86jYQUMGu79u0OHMg0ZG9Y7vFLk175coEd2BklsKc6nIbY8o6ZiKjCI3aKJJFiN6MAPkm+boNiz6X5DchLSFm6F6x5ITQKVcB+zgmnUoBcrO2NPTaYeiX0FtVWHceqgaQy4N3T2DEyv0Wk0T6JY5LpvmeLArVlm/vTfwXQAMm3FPg8Jca3ksmB8Qbz2Ta7dlo3i3oMsaVwbFBc9OXRnvqIDQiX+DmQ8XoAFeSopS9y9L0aOjJbxjZDE8Q="
