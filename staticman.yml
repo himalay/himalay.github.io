@@ -91,7 +91,7 @@ comments:
 hearts:
   allowedFields: ["slug"]
   branch: "develop"
-  commitMessage: ":heart:++ on {options.slug}"
+  commitMessage: ":heart:++ on {fields.slug}"
   format: "json"
   generatedFields:
     date:
@@ -109,7 +109,7 @@ hearts:
 errors:
   allowedFields: ["message", "stack", "slug", "context"]
   branch: "develop"
-  commitMessage: ":heart:++ on {options.slug}"
+  commitMessage: ":boom: on {fields.slug}"
   format: "json"
   generatedFields:
     date:
