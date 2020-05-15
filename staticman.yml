@@ -7,7 +7,7 @@ comments:
   #
   # Names of the fields the form is allowed to submit. If a field that is
   # not here is part of the request, an error will be thrown.
-  allowedFields: ["name", "email", "url", "message", "replying_to_uid"]
+  allowedFields: ["name", "email", "url", "message", "slug", "parentId"]
 
   # (*) REQUIRED WHEN USING NOTIFICATIONS
   #
@@ -25,14 +25,9 @@ comments:
   # Text to use as the commit message or pull request title. Accepts placeholders.
   commitMessage: "Comment from {fields.name} on {options.slug}"
 
-  # (*) REQUIRED
-  #
-  # Destination path (filename) for the data files. Accepts placeholders.
-  filename: "entry{@timestamp}"
-
   # The format of the generated data files. Accepted values are "json", "yaml"
   # or "frontmatter"
-  format: "yaml"
+  format: "json"
 
   # List of fields to be populated automatically by Staticman and included in
   # the data file. Keys are the name of the field. The value can be an object
@@ -50,7 +45,7 @@ comments:
   moderation: true
 
   # Name of the site. Used in notification emails.
-  name: "Himalay Sunuwar"
+  name: "himalay.com.np"
 
   # Notification settings. When enabled, users can choose to receive notifications
   # via email when someone adds a reply or a new comment. This requires an account
@@ -74,9 +69,14 @@ comments:
   # Destination path (directory) for the data files. Accepts placeholders.
   path: "_data/comments"
 
+  # (*) REQUIRED
+  #
+  # Destination path (filename) for the data files. Accepts placeholders.
+  filename: "{options.slug}{@timestamp}"
+
   # Names of required fields. If any of these isn't in the request or is empty,
   # an error will be thrown.
-  requiredFields: ["name", "message"]
+  requiredFields: ["name", "email", "message"]
 
   # List of transformations to apply to any of the fields supplied. Keys are
   # the name of the field and values are possible transformation types.
@@ -84,6 +84,24 @@ comments:
     email: md5
 
   reCaptcha:
-    enabled: false
+    enabled: true
     siteKey: "6LdWGvcUAAAAAMhFFPCe3Lo_LuvE0XTxe-2o6LBt"
     secret: "ki2WK6pPjXOxcMD3tltBhYaHBKkL57/4oN80ZUvkgB0hiYzEODMSrVKRkcAJMzwywAUYSi7jac9f/ICqNOZ1AvAr4NJNcRFFU1/1scuM4cM3CA3IUIpq7pzb1O8R4T+Kbm/bk7tXuZnQpomyM/0+VrR0HxSz1YhtGtFkEV5rJvEJhoRrewHKS/8hwSHYws4yXyGhVqv6m+U4XCU9bUkGw/ffMyHFh8UNMOqnZ5PL3cUq1KSwx7qZp86RQYjldqSU9rOocD0zbKszvwMhiA2icNnfssYwENwugGzhrUwWLaUHBDrXpJhQt/bcz/jUV3H5JkfkO8ESdu4phjje6k8klfBWB9QmEKd3ThxftpOkQ9LLHfJbZo0+pChLKh3gHJCo0optYfM7rlxOK+8STgeWPWlZcqqvEjmHyqaP8xsOTHkRVy+JXw86jYQUMGu79u0OHMg0ZG9Y7vFLk175coEd2BklsKc6nIbY8o6ZiKjCI3aKJJFiN6MAPkm+boNiz6X5DchLSFm6F6x5ITQKVcB+zgmnUoBcrO2NPTaYeiX0FtVWHceqgaQy4N3T2DEyv0Wk0T6JY5LpvmeLArVlm/vTfwXQAMm3FPg8Jca3ksmB8Qbz2Ta7dlo3i3oMsaVwbFBc9OXRnvqIDQiX+DmQ8XoAFeSopS9y9L0aOjJbxjZDE8Q="
+
+hearts:
+  allowedFields: ["slug"]
+  branch: "master"
+  commitMessage: ":heart:++ on {options.slug}"
+  format: "json"
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "timestamp-seconds"
+  moderation: false
+  name: "himalay.com.np"
+  path: "_data/hearts"
+  filename: "{options.slug}{@timestamp}"
+  requiredFields: ["slug"]
+  recaptcha:
+    enabled: false
