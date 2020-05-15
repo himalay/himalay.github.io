@@ -38,7 +38,6 @@ const ArticleAuthor: React.FC<{ author: Author }> = ({ author }) => {
 
 interface ArticleHeroProps {
   article: Article
-  author: Author
 }
 
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article }) => {
