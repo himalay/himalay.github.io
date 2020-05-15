@@ -20,7 +20,7 @@ comments:
   #
   # Name of the branch being used. Must match the one sent in the URL of the
   # request.
-  branch: master
+  branch: "develop"
 
   # Text to use as the commit message or pull request title. Accepts placeholders.
   commitMessage: "Comment from {fields.name} on {options.slug}"
@@ -90,7 +90,7 @@ comments:
 
 hearts:
   allowedFields: ["slug"]
-  branch: "master"
+  branch: "develop"
   commitMessage: ":heart:++ on {options.slug}"
   format: "json"
   generatedFields:
@@ -108,7 +108,7 @@ hearts:
 
 errors:
   allowedFields: ["message", "stack", "slug", "context"]
-  branch: "master"
+  branch: "develop"
   commitMessage: ":heart:++ on {options.slug}"
   format: "json"
   generatedFields:
