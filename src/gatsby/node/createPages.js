@@ -61,8 +61,17 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   try {
     log('Querying Articles source:', 'Local')
     const localArticles = await graphql(query.local.articles)
+    const hearts = await graphql(query.local.hearts)
+    const comments = await graphql(query.local.comments)
 
-    dataSources.local.articles = localArticles.data.articles.edges.map(normalize.local.articles)
+    dataSources.local.articles = localArticles.data.articles.edges.map((edge) => {
+      /* eslint-disable no-param-reassign */
+      // attach hearts to article
+      edge.node.hearts = hearts.data.allHeartsJson.nodes.filter(({ slug }) => slug === edge.node.slug)
+      // attach comments to article
+      edge.node.comments = comments.data.allCommentsJson.nodes.filter(({ slug }) => slug === edge.node.slug)
+      return normalize.local.articles(edge)
+    })
   } catch (error) {
     console.error(error)
   }

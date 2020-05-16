@@ -30,6 +30,7 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-sitemap',
+    'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -168,6 +169,20 @@ module.exports = {
       options: {
         path: 'content/posts',
         name: 'content/posts',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: '_data/comments/',
+        name: 'data/comments',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: '_data/hearts/',
+        name: 'data/hearts',
       },
     },
     {

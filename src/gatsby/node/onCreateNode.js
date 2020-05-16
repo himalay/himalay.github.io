@@ -1,12 +1,22 @@
 /* eslint-disable no-prototype-builtins */
 
 const crypto = require('crypto')
+const toHAST = require('mdast-util-to-hast')
+const hastToHTML = require('hast-util-to-html')
+const Remark = require('remark')
+
 const generateSlug = require('./generateSlug')
+
+const remark = new Remark().data('settings', {
+  commonmark: true,
+  footnotes: true,
+  pedantic: true,
+})
 
 // Create fields for post slugs and source
 // This will change with schema customization with work
 module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
-  const { createNode, createParentChildLink } = actions
+  const { createNode, createParentChildLink, createNodeField } = actions
   const contentPath = themeOptions.contentPath || 'content/posts'
   const basePath = themeOptions.basePath || '/'
 
@@ -37,5 +47,23 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
     })
 
     createParentChildLink({ parent: fileNode, child: node })
+  }
+
+  // For comment nodes (which are stored in JSON) parse the `message` field from
+  // markdown into HTML, and add it to the node as a field called `messageHtml`.
+  // Then we can use that field to render the comments.
+  if (node.internal.type === 'CommentsJson' && source === 'data/comments') {
+    // Generate an HTML version of the markdown field `message`
+    const ast = remark.parse(node.message)
+    const htmlAst = toHAST(ast, { allowDangerousHtml: true })
+    const html = hastToHTML(htmlAst, {
+      allowDangerousHtml: true,
+    })
+
+    createNodeField({
+      node,
+      name: 'messageHtml',
+      value: html,
+    })
   }
 }

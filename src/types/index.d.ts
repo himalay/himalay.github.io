@@ -24,6 +24,25 @@ export interface Author {
   avatar: string
 }
 
+interface Heart {
+  _id: string
+  slug: string
+}
+
+interface Comment {
+  _id: string
+  slug: string
+  date: number
+  name: string
+  url: string
+  message: string
+  parentId: string
+  email: string
+  fields: {
+    messageHtml: string
+  }
+}
+
 export interface Article {
   slug: string
   title: string
@@ -39,6 +58,8 @@ export interface Article {
   timeToRead: number
   date: string
   dateForSEO: string
+  hearts: Heart[]
+  comments: Comment[]
 }
 
 interface ArticleQuery {

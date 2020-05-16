@@ -52,4 +52,29 @@ module.exports.local = {
       }
     }
   }`,
+  hearts: `{
+    allHeartsJson {
+      nodes {
+        _id
+        slug
+      }
+    }
+  }`,
+  comments: `{
+    allCommentsJson {
+      nodes {
+        _id
+        slug
+        date
+        name
+        url
+        message
+        parentId
+        email
+        fields {
+          messageHtml
+        }
+      }
+    }
+  }`,
 }
