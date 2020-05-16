@@ -16,6 +16,7 @@ import ArticleControls from '@sections/article/Article.Controls'
 import ArticleSEO from '@sections/article/Article.SEO'
 import ArticleShare from '@sections/article/Article.Share'
 import NextArticle from '@components/NextArticle'
+import Heart from '@components/Heart'
 
 const Article: Template = ({ pageContext, location }) => {
   const contentSectionRef = useRef<HTMLElement>(null)
@@ -74,6 +75,7 @@ const Article: Template = ({ pageContext, location }) => {
           <ArticleShare />
         </MDXRenderer>
       </ArticleBody>
+      <Heart slug={article.slug} count={article.hearts.length} />
       {next.length > 0 && <NextArticle articles={next} />}
     </Layout>
   )
