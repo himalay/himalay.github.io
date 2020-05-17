@@ -51,10 +51,16 @@ jobs:
       - run: yarn lint
         name: Run ESLint
 
-      - run: yarn deploy
-        name: Deploy 🚀
+      - run: yarn build
+        name: Build
         env:
           # incremental builds
           # https://www.gatsbyjs.org/docs/page-build-optimizations-for-incremental-data-changes/
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           NODE_ENV: production
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GATSBY_PUBLISH_TOKEN }}
+          publish_dir: ./public
+          publish_branch: master
