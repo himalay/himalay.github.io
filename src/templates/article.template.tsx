@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import throttle from 'lodash/throttle'
+import debounce from 'lodash/debounce'
 
 import Layout from '@components/Layout'
 import MDXRenderer from '@components/MDX'
 import Progress from '@components/Progress'
-
 import mediaqueries from '@styles/media'
-import { debounce } from '@utils'
-
 import { Template } from '@types'
 import ArticleAside from '@sections/article/Article.Aside'
 import ArticleHero from '@sections/article/Article.Hero'
@@ -38,7 +36,7 @@ const Article: Template = ({ pageContext, location }) => {
        * imagery to recheck when it's loaded
        */
       if (!hasCalculated) {
-        const debouncedCalculation = debounce(calculateBodySize)
+        const debouncedCalculation = debounce(calculateBodySize, 100)
         const $imgs = contentSection.querySelectorAll('img')
 
         $imgs.forEach(($img) => {
@@ -58,7 +56,7 @@ const Article: Template = ({ pageContext, location }) => {
     window.addEventListener('resize', calculateBodySize)
 
     return () => window.removeEventListener('resize', calculateBodySize)
-  }, [])
+  }, [hasCalculated])
 
   return (
     <Layout>

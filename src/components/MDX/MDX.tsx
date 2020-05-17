@@ -19,7 +19,7 @@ import { ImageZoom } from '@components/Image'
 import Figcaption from '@components/Figcaption'
 
 import mediaqueries from '@styles/media'
-import { toKebabCase } from '@utils'
+import toKebabCase from '@utils/toKebabCase'
 
 const components = {
   img: ImageZoom,

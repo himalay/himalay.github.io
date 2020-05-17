@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { makeApiCall } from '@utils'
 import HeartIcon from '@icons/ui/Heart.Icon'
+import staticmanPost from '@utils/staticmanPost'
 
 const HEARTS = 'HEARTS'
 
@@ -27,8 +27,8 @@ const Heart: React.FC<{ slug: string; count: number }> = ({ slug, count = 0 }) =
     const hearts: string[] = JSON.parse(localStorage.getItem(HEARTS) || '[]')
     hearts.push(slug)
     localStorage.setItem(HEARTS, JSON.stringify(hearts))
-    makeApiCall('/hearts', { slug }).catch(({ message, stack }) =>
-      makeApiCall('/errors', { message, stack, slug, context: 'hearts' }).catch(() => {
+    staticmanPost('/hearts', { slug }).catch(({ message, stack }) =>
+      staticmanPost('/errors', { message, stack, slug, context: 'hearts' }).catch(() => {
         //
       }),
     )

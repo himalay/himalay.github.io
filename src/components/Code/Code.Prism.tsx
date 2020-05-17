@@ -7,7 +7,7 @@ import theme from 'prism-react-renderer/themes/oceanicNext'
 import CopyIcon from '@icons/ui/Copy.Icon'
 import CopiedIcon from '@icons/ui/Copied.Icon'
 import mediaqueries from '@styles/media'
-import { copyToClipboard } from '@utils'
+import copyToClipboard from '@utils/copyToClipboard'
 
 interface CopyProps {
   toCopy: string

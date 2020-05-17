@@ -1,4 +1,4 @@
-declare module 'react-use-flexsearch' {
+declare module 'react-use-flexsearc' {
   export interface Result {
     excerpt: string
     id: string
@@ -10,6 +10,5 @@ declare module 'react-use-flexsearch' {
     [key: string]: Result
   }
 
-  // eslint-disable-next-line no-undef
-  export const useFlexSearch = (query: string, index: string, store: Store) => Array<Result>
+  export function useFlexSearch(query: string, index: string, store: Store): Array<Result>
 }

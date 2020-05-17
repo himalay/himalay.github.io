@@ -6,14 +6,9 @@ import { useColorMode } from 'theme-ui'
 import TwitterIcon from '@icons/social/Twitter.Icon'
 import LinkedInIcon from '@icons/social/LinkedIn.Icon'
 import CopyIcon from '@icons/ui/Copy.Icon'
-
-import {
-  getHighlightedTextPositioning,
-  getSelectionDimensions,
-  getSelectionText,
-  getWindowDimensions,
-  getBreakpointFromTheme,
-} from '@utils'
+import getWindowDimensions from '@utils/getWindowDimensions'
+import getBreakpointFromTheme from '@utils/getBreakpointFromTheme'
+import { getHighlightedTextPositioning, getSelectionDimensions } from '@utils/selections'
 
 function ReferralLink({ disabled, share, children }: { disabled: boolean; share: string; children: React.ReactNode }) {
   function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
@@ -106,11 +101,9 @@ const ArticleShare: React.FC<{}> = () => {
          */
         let paddingOffset = 0
 
-        if (windowWidth > tablet) {
+        if (tablet && windowWidth > tablet) {
           paddingOffset = 53
-        }
-
-        if (windowWidth > desktop) {
+        } else if (desktop && windowWidth > desktop) {
           paddingOffset = 68
         }
 
@@ -131,7 +124,7 @@ const ArticleShare: React.FC<{}> = () => {
           show: width > 1,
         })
 
-        setText(getSelectionText())
+        setText(window.getSelection()?.toString() || '')
       }, 0)
     }
 

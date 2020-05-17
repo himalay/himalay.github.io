@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-import { range } from '@utils'
+import range from '@utils/range'
 import KeyValue from '@components/KeyValue'
 
 /**
@@ -83,7 +83,7 @@ const Paginator: React.FC<Props> = ({ pageCount: count, index: current, pathPref
       truncatedRange.push(count)
     }
 
-    return [...new Set(truncatedRange)].map((page: number | null, i) => {
+    return [...new Set(truncatedRange)].map((page: number | null) => {
       const value = {
         objValue: page || '···',
         to: '',

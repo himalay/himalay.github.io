@@ -249,5 +249,17 @@ module.exports = {
         siteUrl: siteMetadata.siteUrl,
       },
     },
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.jsx?$|\.tsx?$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+        },
+      },
+    },
   ],
 }

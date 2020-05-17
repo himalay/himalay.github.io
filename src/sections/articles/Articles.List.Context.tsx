@@ -1,9 +1,11 @@
 import React, { createContext, useState } from 'react'
 
+/* eslint-disable @typescript-eslint/no-empty-function */
 export const GridLayoutContext = createContext({
   gridLayout: 'tiles',
   hasSetGridLayout: false,
-  setGridLayout: (tile: string) => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  setGridLayout: (_tile: string) => {},
   getGridLayout: () => {},
 })
 

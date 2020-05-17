@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
-import { Result } from 'react-use-flexsearch'
 
-import { PageContext } from '@types'
+import { PageContext, Article } from '@types'
 import KeyValue, { Mark } from '@components/KeyValue'
 import Foldable from '@components/Foldable'
 import Search from '@components/Search'
@@ -16,11 +15,28 @@ interface ArticlesListProps {
 }
 
 const ArticlesList: React.FC<ArticlesListProps> = ({ pageContext, alwaysShowAllDetails }) => {
+  const [searchResult, setSearchResult] = useState<Article[] | null>()
   const articles = pageContext.group
+  useEffect(() => {
+    const copyHandler = (e: ClipboardEvent) => {
+      let selection = document.getSelection()?.toString() || ''
+
+      try {
+        selection = selection.replace(/^[\w\s]+\n?/gm, '').replace(/^,/gm, '"",')
+        selection = JSON.stringify(JSON.parse(selection), null, 2)
+      } catch (err) {
+        //
+      }
+
+      if (e.clipboardData) e.clipboardData.setData('text/plain', selection)
+      e.preventDefault()
+    }
+    document.body.addEventListener('copy', copyHandler)
+
+    return () => document.body.removeEventListener('copy', copyHandler)
+  }, [])
 
   if (!articles) return null
-
-  const [searchResult, setSearchResult] = useState<Result[] | null>(null)
 
   return (
     <>

@@ -20,7 +20,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
-import { minifyJSON } from '@utils'
+import minifyJson from '@utils/minifyJson'
 
 interface HelmetProps {
   articlepathName?: string
@@ -104,7 +104,7 @@ const SEO: React.FC<HelmetProps> = ({
     imageUrl = fullURL(imageUrl)
   }
 
-  const siteSchema = minifyJSON(`{
+  const siteSchema = minifyJson(`{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -179,7 +179,7 @@ const SEO: React.FC<HelmetProps> = ({
   }
 `)
 
-  const blogSchema = minifyJSON(`{
+  const blogSchema = minifyJson(`{
     "@context": "https://schema.org",
     "@graph": [
       {

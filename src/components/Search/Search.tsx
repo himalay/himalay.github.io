@@ -38,6 +38,7 @@ const SearchComponent: React.FC<SearchProps> = ({ onSearchResults, search }) => 
       }
       setCheckUrl(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, checkUrl])
 
   return (

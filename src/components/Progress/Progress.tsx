@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import throttle from 'lodash/throttle'
 
-import { clamp } from '@utils'
+import clamp from '@utils/clamp'
 
-export interface IProgress {
+export interface Progress {
   contentHeight: number
 }
 
-const Progress: React.FC<IProgress> = ({ contentHeight }) => {
+const Progress: React.FC<Progress> = ({ contentHeight }) => {
   const [progress, setProgress] = useState<number>(0)
 
   useEffect(() => {

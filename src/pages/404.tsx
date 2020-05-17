@@ -7,6 +7,7 @@ import styled from '@emotion/styled'
 import mediaqueries from '@styles/media'
 import Layout from '@components/Layout'
 import NextArticle from '@components/NextArticle'
+import { Article } from '@types'
 
 const articlesQuery = graphql`
   {
@@ -51,13 +52,13 @@ const articlesQuery = graphql`
 
 const NotFound: React.FC = () => {
   const [query, setQuery] = useState('')
-  const [latestArticles, setLatestArticles] = useState<any>(null)
+  const [latestArticles, setLatestArticles] = useState<Article[]>(null)
   const results = useStaticQuery(articlesQuery)
 
   useEffect(() => {
     if (!latestArticles) {
       setLatestArticles(
-        results.allArticle.edges.map((x: any) => {
+        results.allArticle.edges.map((x: Article) => {
           // eslint-disable-next-line no-param-reassign
           x.node.hero = {
             regular: x.node.hero.regular.fluid,
@@ -67,7 +68,7 @@ const NotFound: React.FC = () => {
         }),
       )
     }
-  }, [results])
+  }, [latestArticles, results])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -222,7 +223,7 @@ const Button = styled.button`
   height: 38px;
   border: 1px solid ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.accent};
-  background: ${(p) => 'transparent'};
+  background: transparent;
   font-weight: 600;
   border-radius: 35px;
   letter-spacing: 0.42px;

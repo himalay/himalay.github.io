@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import throttle from 'lodash/throttle'
 
 import mediaqueries from '@styles/media'
-import { clamp } from '@utils'
+import clamp from '@utils/clamp'
 import HandleOverlap from './Article.HandleOverlap'
 
 interface AsideProps {
