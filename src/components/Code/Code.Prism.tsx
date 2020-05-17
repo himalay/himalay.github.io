@@ -4,7 +4,8 @@ import styled from '@emotion/styled'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import theme from 'prism-react-renderer/themes/oceanicNext'
 
-import Icons from '@icons'
+import CopyIcon from '@icons/ui/Copy.Icon'
+import CopiedIcon from '@icons/ui/Copied.Icon'
 import mediaqueries from '@styles/media'
 import { copyToClipboard } from '@utils'
 
@@ -30,11 +31,11 @@ const Copy: React.FC<CopyProps> = ({ toCopy }) => {
     <CopyButton onClick={copyToClipboardOnClick} data-a11y="false">
       {hasCopied ? (
         <>
-          Copied <Icons.Copied fill="#6f7177" />
+          Copied <CopiedIcon fill="#6f7177" />
         </>
       ) : (
         <>
-          Copy <Icons.Copy fill="#6f7177" />
+          Copy <CopyIcon fill="#6f7177" />
         </>
       )}
     </CopyButton>

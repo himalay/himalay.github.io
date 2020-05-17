@@ -4,7 +4,7 @@ import { navigate, graphql, useStaticQuery } from 'gatsby'
 import { useColorMode } from 'theme-ui'
 
 import { getWindowDimensions, getBreakpointFromTheme } from '@utils'
-import Icons from '@icons'
+import ExIcon from '@icons/ui/Ex.Icon'
 import mediaqueries from '@styles/media'
 import KeyValue from '@components/KeyValue'
 import Section from '../Section'
@@ -80,7 +80,7 @@ const NavigationHeader: React.FC<{}> = () => {
               title="Navigate back to the homepage"
               aria-label="Navigate back to the homepage"
             >
-              <Icons.Ex fill={fill} />
+              <ExIcon fill={fill} />
             </button>
           ) : (
             <DarkModeToggle />

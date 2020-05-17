@@ -3,7 +3,9 @@ import styled from '@emotion/styled'
 import { keyframes } from '@emotion/core'
 import { useColorMode } from 'theme-ui'
 
-import Icons from '@icons'
+import TwitterIcon from '@icons/social/Twitter.Icon'
+import LinkedInIcon from '@icons/social/LinkedIn.Icon'
+import CopyIcon from '@icons/ui/Copy.Icon'
 
 import {
   getHighlightedTextPositioning,
@@ -190,17 +192,17 @@ const ArticleShare: React.FC<{}> = () => {
       <MenuText>Share: </MenuText>
       {share.twitter && (
         <ReferralLink disabled={!canTweet} share={share.twitter}>
-          <Icons.Twitter width="18px" height="15px" />
+          <TwitterIcon width="18px" height="15px" />
         </ReferralLink>
       )}
       {share.linkedin && (
         <ReferralLink disabled={false} share={share.linkedin}>
-          <Icons.LinkedIn width="16px" height="16px" />
+          <LinkedInIcon width="16px" height="16px" />
         </ReferralLink>
       )}
       <MenuDivider />
       <MenuButton onClick={handleCopyClick} aria-label="Copy selected text">
-        <Icons.Copy />
+        <CopyIcon />
       </MenuButton>
     </MenuFloat>
   )

@@ -3,6 +3,7 @@ import { keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { makeApiCall } from '@utils'
+import HeartIcon from '@icons/ui/Heart.Icon'
 
 const HEARTS = 'HEARTS'
 
@@ -16,7 +17,7 @@ const Heart: React.FC<{ slug: string; count: number }> = ({ slug, count = 0 }) =
     if (!hearted && hearts.includes(slug)) {
       setHearted(true)
     }
-  }, [slug])
+  }, [hearted, slug])
 
   const changeHandler = async () => {
     if (hearted) return
@@ -37,12 +38,7 @@ const Heart: React.FC<{ slug: string; count: number }> = ({ slug, count = 0 }) =
     <HeartWrapper>
       <Input id="heartToggle" type="radio" checked={hearted} onChange={changeHandler} />
       <Label htmlFor="heartToggle" aria-label="like" title="Like">
-        <svg viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
-          />
-        </svg>
+        <HeartIcon />
       </Label>
       <span title="Like counts">{heartCount}</span>
     </HeartWrapper>
