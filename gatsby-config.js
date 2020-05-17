@@ -31,9 +31,11 @@ module.exports = {
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-sitemap',
     'gatsby-transformer-json',
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        /* eslint-disable @typescript-eslint/camelcase */
         name,
         short_name: name.split(' ')[0],
         start_url: '/',
