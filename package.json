@@ -60,6 +60,8 @@
     "gatsby-transformer-remark": "^2.8.8",
     "gatsby-transformer-sharp": "^2.5.2",
     "hast-util-to-html": "^7.1.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "lodash": "^4.17.15",
     "mdast-util-to-hast": "^9.0.1",
     "modern-normalize": "^0.6.0",
@@ -111,5 +113,15 @@
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "webpack": "4.43.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
