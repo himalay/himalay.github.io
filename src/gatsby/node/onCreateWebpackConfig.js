@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = ({ actions }) => {
   actions.setWebpackConfig({
+    devtool: process.env.NODE_ENV !== 'production',
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, '../../components/'),
