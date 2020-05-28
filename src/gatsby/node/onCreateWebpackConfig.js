@@ -1,8 +1,7 @@
 const path = require('path')
 
 module.exports = ({ actions }) => {
-  actions.setWebpackConfig({
-    devtool: process.env.NODE_ENV !== 'production',
+  const config = {
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, '../../components/'),
@@ -15,5 +14,9 @@ module.exports = ({ actions }) => {
       },
       extensions: ['.js', '.json', '.ts', '.tsx'],
     },
-  })
+  }
+
+  if (process.env.NODE_ENV === 'production') config.devtool = false
+
+  actions.setWebpackConfig(config)
 }
