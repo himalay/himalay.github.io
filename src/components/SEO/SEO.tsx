@@ -94,8 +94,7 @@ const SEO: React.FC<HelmetProps> = ({
 
   const fullURL = (path: string) => (path ? `${path}` : site.siteUrl)
 
-  // If no image is provided lets looks for a default novela static image
-  let imageUrl = image || `${site.siteUrl}/preview.jpg`
+  let imageUrl = image || `${site.siteUrl}/icons/icon-512x512.png`
 
   // Checks if the source of the image is hosted on Contentful
   if (`${imageUrl}`.includes('ctfassets')) {
